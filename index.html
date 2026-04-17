@@ -175,7 +175,7 @@
       .site-nav__links {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: clamp(0.85rem, 1.8vw, 1.2rem);
       }
 
       .nav-link,
@@ -1392,8 +1392,12 @@
           <p class="site-identity">ronakchakraborty.me</p>
           <nav class="site-nav" aria-label="Main navigation">
             <div class="site-nav__links">
+              <a class="nav-link" href="#study-focus">Studies</a>
               <a class="nav-link" href="#philosophy">Philosophy</a>
+              <a class="nav-link" href="#background">Background</a>
               <a class="nav-link" href="#portfolio">Portfolio</a>
+              <a class="nav-link" href="#experience">Experience</a>
+              <a class="nav-link" href="#how-i-work">How I Work</a>
               <a class="nav-link" href="#contact">Contact</a>
             </div>
             <button
@@ -1408,9 +1412,16 @@
           </nav>
         </div>
         <div class="mobile-menu" id="mobile-menu" data-open="false">
+          <a class="mobile-menu__link" href="#study-focus">What I Studied</a>
           <a class="mobile-menu__link" href="#philosophy">Philosophy</a>
+          <a class="mobile-menu__link" href="#background">Where I&apos;m From</a>
           <a class="mobile-menu__link" href="#portfolio">Portfolio</a>
-          <a class="mobile-menu__link" href="#contact">Contact</a>
+          <a class="mobile-menu__link" href="#experience">Experience</a>
+          <a class="mobile-menu__link" href="#stack">Technical Stack</a>
+          <a class="mobile-menu__link" href="#current-questions">What Holds My Attention</a>
+          <a class="mobile-menu__link" href="#how-i-work">How I Work</a>
+          <a class="mobile-menu__link" href="#looking-for">What I&apos;m Looking For</a>
+          <a class="mobile-menu__link" href="#contact">Contact Me</a>
         </div>
       </div>
     </header>
