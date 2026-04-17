@@ -3,23 +3,68 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ronak Chakraborty | Systems beneath everyday life</title>
+    <title>Ronak Chakraborty | AI Products, Operations, and Everyday Systems</title>
+    <meta name="author" content="Ronak Chakraborty">
     <meta
       name="description"
-      content="Personal site of Ronak Chakraborty, a Bay Area-raised Kelley senior building AI products and thinking about operations, cities, finance systems, and the everyday structures people have to live inside."
+      content="Personal site of Ronak Chakraborty, a Bay Area-raised Kelley senior building AI products and thinking about operations, finance systems, cities, and the everyday structures people move through."
     >
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://ronakchakraborty.me/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Ronak Chakraborty | Systems beneath everyday life">
+    <meta property="og:site_name" content="Ronak Chakraborty">
+    <meta property="og:title" content="Ronak Chakraborty | AI Products, Operations, and Everyday Systems">
     <meta
       property="og:description"
-      content="Personal site of Ronak Chakraborty, spanning AI products, operations, finance systems, cities, and the everyday systems people have to live inside."
+      content="Personal site of Ronak Chakraborty, spanning AI products, operations, finance systems, cities, and the everyday systems people move through."
     >
     <meta property="og:url" content="https://ronakchakraborty.me/">
     <meta
       property="og:image"
       content="https://ronakchakraborty.me/og-image.png"
     >
+    <meta property="og:image:alt" content="Editorial site preview for Ronak Chakraborty">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ronak Chakraborty | AI Products, Operations, and Everyday Systems">
+    <meta
+      name="twitter:description"
+      content="Personal site of Ronak Chakraborty, spanning AI products, operations, finance systems, cities, and the everyday systems people move through."
+    >
+    <meta name="twitter:image" content="https://ronakchakraborty.me/og-image.png">
+    <meta name="theme-color" content="#e8dbc6">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://ronakchakraborty.me/#website",
+            "url": "https://ronakchakraborty.me/",
+            "name": "Ronak Chakraborty",
+            "description": "Personal site of Ronak Chakraborty, spanning AI products, operations, finance systems, cities, and the everyday systems people move through."
+          },
+          {
+            "@type": "Person",
+            "@id": "https://ronakchakraborty.me/#person",
+            "name": "Ronak Chakraborty",
+            "url": "https://ronakchakraborty.me/",
+            "description": "Bay Area-raised Kelley senior building AI products and working across operations, finance systems, cities, and everyday systems.",
+            "image": "https://ronakchakraborty.me/portrait.jpg",
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Indiana University Bloomington"
+            },
+            "sameAs": [
+              "https://linkedin.com/in/ronakchakraborty/",
+              "https://sparsehalo.xyz/about",
+              "https://sparsehalo.xyz/research"
+            ]
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -32,8 +77,7 @@
       document.documentElement.classList.add("has-js");
       try {
         const storedTheme = window.localStorage.getItem("site-theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+        document.documentElement.dataset.theme = storedTheme || "light";
       } catch (error) {
         document.documentElement.dataset.theme = "light";
       }
@@ -74,22 +118,22 @@
       }
 
       html[data-theme="dark"] {
-        --color-bg: #17130f;
-        --color-surface: #221c16;
-        --color-border: #4f4337;
-        --color-text: #f1e8db;
-        --color-text-muted: #d2c2ae;
-        --color-text-faint: #9e8d79;
-        --color-panel: rgba(39, 32, 25, 0.82);
-        --color-panel-strong: rgba(29, 24, 19, 0.94);
-        --color-header: rgba(20, 17, 13, 0.92);
-        --color-card-bg: rgba(32, 26, 21, 0.54);
-        --color-figure-frame: rgba(45, 37, 29, 0.9);
-        --color-figure-frame-strong: rgba(49, 40, 31, 0.94);
-        --color-icon-bg: rgba(48, 40, 31, 0.86);
-        --color-tool-bg: rgba(28, 23, 18, 0.96);
-        --color-tool-bg-strong: rgba(38, 31, 24, 0.98);
-        --color-tool-panel: #211a14;
+        --color-bg: #221913;
+        --color-surface: #2d221b;
+        --color-border: #5b493c;
+        --color-text: #f3e6d4;
+        --color-text-muted: #d5c1aa;
+        --color-text-faint: #ab9378;
+        --color-panel: rgba(49, 37, 29, 0.84);
+        --color-panel-strong: rgba(37, 28, 22, 0.95);
+        --color-header: rgba(30, 23, 18, 0.9);
+        --color-card-bg: rgba(61, 46, 36, 0.36);
+        --color-figure-frame: rgba(71, 54, 42, 0.82);
+        --color-figure-frame-strong: rgba(79, 61, 47, 0.92);
+        --color-icon-bg: rgba(74, 57, 45, 0.78);
+        --color-tool-bg: rgba(43, 33, 25, 0.96);
+        --color-tool-bg-strong: rgba(58, 44, 34, 0.98);
+        --color-tool-panel: #32261e;
       }
 
       html {
@@ -117,9 +161,9 @@
 
       html[data-theme="dark"] body {
         background:
-          radial-gradient(circle at top right, rgba(120, 96, 72, 0.18), transparent 36%),
-          radial-gradient(circle at 10% 0%, rgba(87, 69, 52, 0.16), transparent 32%),
-          linear-gradient(180deg, #1b1611 0%, var(--color-bg) 42%, #120f0c 100%);
+          radial-gradient(circle at top right, rgba(181, 136, 92, 0.16), transparent 34%),
+          radial-gradient(circle at 10% 0%, rgba(125, 93, 64, 0.18), transparent 30%),
+          linear-gradient(180deg, #2d2119 0%, #241a14 34%, var(--color-bg) 68%, #1b140f 100%);
       }
 
       img {
@@ -175,103 +219,19 @@
         width: min(100% - clamp(1.75rem, 4vw, 4rem), var(--container-wide));
       }
 
-      .site-header {
-        border-bottom: 1px solid var(--color-border);
-        background: var(--color-header);
-      }
-
-      .site-header__inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.5rem;
-        min-height: 5rem;
-        padding-right: clamp(11.5rem, 16vw, 13.5rem);
-      }
-
-      .site-identity,
-      .nav-link,
-      .menu-toggle,
       .section-label,
       .metadata,
       .scroll-indicator,
-      .ghost-button,
-      .contact-link__label {
+      .ghost-button {
         font-family: var(--font-ui);
         font-size: var(--label-size);
         letter-spacing: 0.24em;
         text-transform: uppercase;
       }
 
-      .site-identity {
-        margin: 0;
-        color: var(--color-text-muted);
-      }
-
-      .site-nav {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .site-nav__links {
-        display: flex;
-        align-items: center;
-        gap: clamp(0.85rem, 1.8vw, 1.2rem);
-      }
-
-      .nav-link,
-      .menu-toggle,
       .scroll-indicator,
-      .ghost-button,
-      .contact-link {
+      .ghost-button {
         text-decoration: none;
-      }
-
-      .nav-link {
-        color: var(--color-text-muted);
-      }
-
-      .nav-link:hover,
-      .nav-link:focus-visible,
-      .contact-link:hover,
-      .contact-link:focus-visible {
-        color: var(--color-text);
-      }
-
-      .menu-toggle {
-        display: none;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        color: var(--color-text-muted);
-        cursor: pointer;
-      }
-
-      .menu-toggle:hover,
-      .menu-toggle:focus-visible {
-        color: var(--color-text);
-      }
-
-      .mobile-menu {
-        display: none;
-        border-top: 1px solid var(--color-border);
-      }
-
-      .mobile-menu[data-open="true"] {
-        display: block;
-      }
-
-      .mobile-menu__link {
-        display: block;
-        padding: 1rem 0;
-        border-bottom: 1px solid var(--color-border);
-        color: var(--color-text-muted);
-        font-family: var(--font-ui);
-        font-size: 0.75rem;
-        letter-spacing: 0.18em;
-        text-decoration: none;
-        text-transform: uppercase;
       }
 
       .floating-tools {
@@ -825,11 +785,11 @@
       }
 
       .experience-card__meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem 1rem;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        gap: 0.7rem;
+        align-content: start;
+        justify-items: start;
+        min-height: 4.25rem;
         color: var(--color-text-faint);
       }
 
@@ -922,6 +882,10 @@
       }
 
       .stack-card__meta {
+        display: grid;
+        align-content: start;
+        justify-items: start;
+        min-height: 4.25rem;
         color: var(--color-text-faint);
       }
 
@@ -984,6 +948,10 @@
       }
 
       .question__meta {
+        display: grid;
+        align-content: start;
+        justify-items: start;
+        min-height: 4.25rem;
         color: var(--color-text-faint);
       }
 
@@ -1018,7 +986,6 @@
       .portfolio__grid {
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
-        grid-auto-rows: 1fr;
         gap: 1px;
         padding: 1px;
         background: var(--color-border);
@@ -1027,8 +994,8 @@
       .project {
         grid-column: span 3;
         display: grid;
-        gap: 2rem;
-        min-height: clamp(23rem, 28vw, 31rem);
+        gap: 1.6rem;
+        align-content: start;
         padding: clamp(2.35rem, 3.8vw, 3.2rem);
         background: var(--color-bg);
         transition:
@@ -1046,21 +1013,22 @@
       }
 
       .project__meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem 1rem;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        gap: 0.7rem;
+        align-content: start;
+        justify-items: start;
+        min-height: 4.25rem;
       }
 
       .project__category,
       .project__status {
         color: var(--color-text-faint);
+        text-align: left;
       }
 
       .project__body {
         display: grid;
-        gap: 1.5rem;
+        gap: 1.2rem;
       }
 
       .project h3 {
@@ -1193,6 +1161,10 @@
       }
 
       .work-card__meta {
+        display: grid;
+        align-content: start;
+        justify-items: start;
+        min-height: 4.25rem;
         color: var(--color-text-faint);
       }
 
@@ -1256,6 +1228,10 @@
       }
 
       .fit-card__meta {
+        display: grid;
+        align-content: start;
+        justify-items: start;
+        min-height: 4.25rem;
         color: var(--color-text-faint);
       }
 
@@ -1280,53 +1256,122 @@
         text-wrap: balance;
       }
 
-      .contact__body {
-        width: min(100%, 48rem);
+      .contact__frame {
+        width: min(100%, var(--panel-width));
         margin-inline: auto;
         display: grid;
-        gap: 2rem;
-        text-align: center;
-        justify-items: center;
+        grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        padding: clamp(1.75rem, 3vw, 2.75rem);
+        border: 1px solid var(--color-border);
+        background:
+          linear-gradient(180deg, var(--color-panel) 0%, var(--color-panel-strong) 100%);
+      }
+
+      .contact__intro {
+        display: grid;
+        gap: 1.5rem;
+        align-content: start;
       }
 
       .contact__headline {
-        max-width: 14ch;
-        margin-inline: auto;
+        max-width: 11ch;
         text-wrap: balance;
       }
 
-      .contact__context {
-        max-width: 36rem;
-        margin-inline: auto;
+      .contact__summary {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .contact__summary p {
+        max-width: 30rem;
         color: var(--color-text-muted);
         font-size: 1.125rem;
         line-height: 1.85;
-        text-wrap: balance;
       }
 
-      .contact__links {
+      .contact__aside {
         display: grid;
-        gap: 0.85rem;
-        justify-items: center;
+        gap: 0.9rem;
+        padding-top: 1.15rem;
+        border-top: 1px solid var(--color-border);
       }
 
-      .contact-link {
-        display: inline-flex;
-        align-items: baseline;
-        flex-wrap: wrap;
-        gap: 0.85rem;
-        justify-content: center;
-        max-width: 100%;
-        color: var(--color-text-muted);
-      }
-
-      .contact-link__label {
+      .contact__aside-line {
         color: var(--color-text-faint);
       }
 
-      .contact-link span:last-child {
+      .contact__routes {
+        display: grid;
+        gap: 1px;
+        padding: 1px;
+        background: var(--color-border);
+      }
+
+      .contact__actions {
+        display: flex;
+        justify-content: flex-start;
+        padding: clamp(1.35rem, 2.6vw, 1.8rem);
+        background: var(--color-bg);
+      }
+
+      .contact-card,
+      .contact-card__subgrid {
+        background: var(--color-border);
+      }
+
+      .contact-card__subgrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+      }
+
+      .contact-card {
+        display: grid;
+        gap: 1rem;
+        padding: clamp(1.7rem, 3vw, 2.25rem);
+        background: var(--color-bg);
+        text-decoration: none;
+        transition:
+          background-color 500ms var(--ease-gentle),
+          border-color 300ms var(--ease-press);
+      }
+
+      .contact-card:hover,
+      .contact-card:focus-visible {
+        background: var(--color-surface);
+      }
+
+      .contact-card__meta {
+        display: grid;
+        align-content: start;
+        justify-items: start;
+        min-height: 2.5rem;
+        color: var(--color-text-faint);
+      }
+
+      .contact-card__value {
+        font-family: var(--font-serif);
+        font-size: clamp(1.7rem, 3.4vw, 2.8rem);
+        line-height: 1.02;
+        letter-spacing: -0.02em;
         overflow-wrap: anywhere;
-        text-align: center;
+      }
+
+      .contact-card__value--small {
+        font-size: clamp(1.45rem, 2.4vw, 2rem);
+      }
+
+      .contact-card__note {
+        max-width: 34rem;
+        color: var(--color-text-muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .contact-card__detail {
+        color: var(--color-text-faint);
       }
 
       .footer {
@@ -1389,10 +1434,6 @@
       }
 
       @media (max-width: 900px) {
-        .site-header__inner {
-          padding-right: 0;
-        }
-
         .hero__grid,
         .floating-tools__row,
         .studies__grid,
@@ -1413,7 +1454,9 @@
         .work__intro,
         .work-grid,
         .fit__intro,
-        .fit-grid {
+        .fit-grid,
+        .contact__frame,
+        .contact-card__subgrid {
           grid-template-columns: 1fr;
         }
 
@@ -1492,20 +1535,17 @@
           margin-inline: auto;
           text-align: center;
         }
+
+        .contact__headline,
+        .contact__summary p {
+          max-width: 100%;
+        }
       }
 
       @media (max-width: 768px) {
-        .site-nav__links {
-          display: none;
-        }
-
         .floating-tools {
           top: auto;
           bottom: 1rem;
-        }
-
-        .menu-toggle {
-          display: inline-flex;
         }
 
         .hero__frame {
@@ -1566,46 +1606,6 @@
         <a class="toc-panel__link" href="#contact">Contact Me</a>
       </aside>
     </div>
-    <header class="site-header">
-      <div class="wide-shell">
-        <div class="site-header__inner">
-          <p class="site-identity">ronakchakraborty.me</p>
-          <nav class="site-nav" aria-label="Main navigation">
-            <div class="site-nav__links">
-              <a class="nav-link" href="#study-focus">Studies</a>
-              <a class="nav-link" href="#philosophy">Philosophy</a>
-              <a class="nav-link" href="#background">Background</a>
-              <a class="nav-link" href="#portfolio">Portfolio</a>
-              <a class="nav-link" href="#experience">Experience</a>
-              <a class="nav-link" href="#how-i-work">How I Work</a>
-              <a class="nav-link" href="#contact">Contact</a>
-            </div>
-            <button
-              class="menu-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="mobile-menu"
-              data-menu-toggle
-            >
-              Menu
-            </button>
-          </nav>
-        </div>
-        <div class="mobile-menu" id="mobile-menu" data-open="false">
-          <a class="mobile-menu__link" href="#study-focus">What I Studied</a>
-          <a class="mobile-menu__link" href="#philosophy">Philosophy</a>
-          <a class="mobile-menu__link" href="#background">Where I&apos;m From</a>
-          <a class="mobile-menu__link" href="#portfolio">Portfolio</a>
-          <a class="mobile-menu__link" href="#experience">Experience</a>
-          <a class="mobile-menu__link" href="#stack">Technical Stack</a>
-          <a class="mobile-menu__link" href="#current-questions">What Holds My Attention</a>
-          <a class="mobile-menu__link" href="#how-i-work">How I Work</a>
-          <a class="mobile-menu__link" href="#looking-for">What I&apos;m Looking For</a>
-          <a class="mobile-menu__link" href="#contact">Contact Me</a>
-        </div>
-      </div>
-    </header>
-
     <main id="main-content">
       <section id="hero" class="hero" aria-label="Introduction">
         <div class="wide-shell hero__frame" data-reveal>
@@ -2370,45 +2370,80 @@
       </section>
 
       <section id="contact">
-        <div class="section-shell">
+        <div class="wide-shell">
           <div class="section-heading" data-reveal>
             <p class="section-label">Reach out</p>
             <h2>Contact Me</h2>
           </div>
-          <div class="contact__body" data-reveal>
-            <p class="pull-quote contact__headline">If the work feels relevant, I&rsquo;d be glad to talk.</p>
-            <p class="contact__context">
-              The best conversations usually start around AI products, operations, finance systems, cities, or whatever ordinary-looking system has recently taken over my attention.
-            </p>
-            <div class="contact__links">
+          <div class="contact__frame" data-reveal>
+            <div class="contact__intro">
+              <p class="pull-quote contact__headline">If the work feels relevant, I&rsquo;d be glad to talk.</p>
+              <div class="contact__summary">
+                <p>
+                  Email is the best way to reach me. If there is a role, project, or conversation that feels like a fit, just send me a note.
+                </p>
+                <p>
+                  LinkedIn works too if that is easier. If you want to see what I actually build, GitHub is probably more useful.
+                </p>
+              </div>
+              <div class="contact__aside">
+                <p class="contact__aside-line metadata">Based in Bloomington for now • Bay Area raised</p>
+                <p class="contact__aside-line metadata">Best first step is email • open to thoughtful conversations across AI, operations, finance, and systems work</p>
+              </div>
+            </div>
+            <div class="contact__routes">
               <a
-                class="contact-link"
+                class="contact-card"
                 href="mailto:ronchak@iu.edu"
-                aria-label="Email ronchak@iu.edu"
+                aria-label="Email Ronak at ronchak@iu.edu"
               >
-                <span class="contact-link__label">Email</span>
-                <span>ronchak@iu.edu</span>
+                <p class="contact-card__meta metadata">Best first step</p>
+                <p class="contact-card__value">ronchak@iu.edu</p>
+                <p class="contact-card__note">
+                  Email is usually the fastest route if the conversation is serious, specific, or time-sensitive.
+                </p>
               </a>
-              <a
-                class="contact-link"
-                href="https://linkedin.com/in/ronakchakraborty/"
-                aria-label="LinkedIn linkedin.com/in/ronakchakraborty"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <span class="contact-link__label">LinkedIn</span>
-                <span>linkedin.com/in/ronakchakraborty</span>
-              </a>
-              <a
-                class="contact-link"
-                href="https://github.com/ronchak"
-                aria-label="GitHub github.com/ronchak"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <span class="contact-link__label">GitHub</span>
-                <span>github.com/ronchak</span>
-              </a>
+              <div class="contact-card__subgrid">
+                <a
+                  class="contact-card"
+                  href="https://linkedin.com/in/ronakchakraborty/"
+                  aria-label="LinkedIn linkedin.com/in/ronakchakraborty"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <p class="contact-card__meta metadata">Professional profile</p>
+                  <p class="contact-card__value contact-card__value--small">LinkedIn</p>
+                  <p class="contact-card__detail metadata">linkedin.com/in/ronakchakraborty</p>
+                </a>
+                <a
+                  class="contact-card"
+                  href="https://sparsehalo.xyz/about"
+                  aria-label="Sparse Halo About sparsehalo.xyz/about"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <p class="contact-card__meta metadata">Public project context</p>
+                  <p class="contact-card__value contact-card__value--small">Sparse Halo</p>
+                  <p class="contact-card__detail metadata">sparsehalo.xyz/about</p>
+                </a>
+              </div>
+              <div class="contact__actions">
+                <a
+                  class="ghost-button ghost-button--small"
+                  href="https://sparsehalo.xyz/research"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Open Research Page
+                </a>
+                <a
+                  class="ghost-button ghost-button--small"
+                  href="./resume.pdf"
+                  target="_blank"
+                >
+                  Download Resume
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -2424,9 +2459,6 @@
 
     <script>
       const root = document.documentElement;
-      const menuToggle = document.querySelector("[data-menu-toggle]");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const mobileMenuLinks = document.querySelectorAll(".mobile-menu__link");
       const floatingTools = document.querySelector(".floating-tools");
       const tocToggle = document.querySelector("[data-toc-toggle]");
       const tocPanel = document.getElementById("floating-toc");
@@ -2483,31 +2515,6 @@
         document.addEventListener("keydown", (event) => {
           if (event.key === "Escape") {
             closeGuide();
-          }
-        });
-      }
-
-      if (menuToggle && mobileMenu) {
-        const closeMenu = () => {
-          mobileMenu.dataset.open = "false";
-          menuToggle.setAttribute("aria-expanded", "false");
-        };
-
-        menuToggle.addEventListener("click", () => {
-          const isOpen = mobileMenu.dataset.open === "true";
-          mobileMenu.dataset.open = String(!isOpen);
-          menuToggle.setAttribute("aria-expanded", String(!isOpen));
-        });
-
-        mobileMenuLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            closeMenu();
-          });
-        });
-
-        window.addEventListener("resize", () => {
-          if (window.innerWidth > 768) {
-            closeMenu();
           }
         });
       }
