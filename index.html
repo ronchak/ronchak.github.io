@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronak Chakraborty | Systems beneath everyday life</title>
+    <meta
+      name="description"
+      content="Personal site of Ronak Chakraborty, a Bay Area-raised Kelley senior building AI products and thinking about operations, cities, finance systems, and the everyday structures people have to live inside."
+    >
+    <link rel="canonical" href="https://ronakchakraborty.me/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ronak Chakraborty | Systems beneath everyday life">
+    <meta
+      property="og:description"
+      content="Personal site of Ronak Chakraborty, spanning AI products, operations, finance systems, cities, and the everyday systems people have to live inside."
+    >
+    <meta property="og:url" content="https://ronakchakraborty.me/">
+    <meta
+      property="og:image"
+      content="https://ronakchakraborty.me/og-image.png"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="./favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <script>
+      document.documentElement.classList.add("has-js");
+    </script>
+    <style>
+      :root {
+        --font-serif: "Instrument Serif", Georgia, serif;
+        --font-body: "Lora", Georgia, serif;
+        --font-ui: "Inter", system-ui, sans-serif;
+
+        --color-bg: #e8dbc6;
+        --color-surface: #ddd0b8;
+        --color-border: #c5b393;
+        --color-text: #221b15;
+        --color-text-muted: #594c40;
+        --color-text-faint: #786958;
+        --color-panel: rgba(245, 237, 225, 0.36);
+        --color-panel-strong: rgba(233, 219, 196, 0.44);
+
+        --section-padding: clamp(8rem, 18vh, 16rem);
+        --container-standard: 1280px;
+        --container-wide: 1536px;
+        --panel-width: 86rem;
+        --reading-width: 65ch;
+        --philosophy-width: 48rem;
+        --label-size: 0.65rem;
+        --focus-ring: 2px solid var(--color-text);
+        --ease-gentle: cubic-bezier(0.2, 0.8, 0.2, 1);
+        --ease-press: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background: var(--color-bg);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          radial-gradient(circle at top right, rgba(235, 219, 195, 0.72), transparent 34%),
+          radial-gradient(circle at 10% 0%, rgba(248, 240, 228, 0.58), transparent 30%),
+          linear-gradient(180deg, #efe2cf 0%, var(--color-bg) 42%, #dfcfb5 100%);
+        color: var(--color-text);
+        font-family: var(--font-body);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a,
+      button {
+        color: inherit;
+      }
+
+      ::selection {
+        background: rgba(99, 95, 88, 0.18);
+        color: var(--color-text);
+      }
+
+      .skip-link {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 100;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--color-border);
+        background: var(--color-surface);
+        color: var(--color-text);
+        font-family: var(--font-ui);
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transform: translateY(-200%);
+        transition: transform 200ms var(--ease-press);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      :focus-visible {
+        outline: var(--focus-ring);
+        outline-offset: 4px;
+      }
+
+      .shell,
+      .section-shell,
+      .wide-shell {
+        width: min(100% - clamp(1.75rem, 4vw, 4rem), var(--container-standard));
+        margin-inline: auto;
+      }
+
+      .wide-shell {
+        width: min(100% - clamp(1.75rem, 4vw, 4rem), var(--container-wide));
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--color-border);
+        background: rgba(232, 219, 198, 0.88);
+      }
+
+      .site-header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        min-height: 5rem;
+      }
+
+      .site-identity,
+      .nav-link,
+      .menu-toggle,
+      .section-label,
+      .metadata,
+      .scroll-indicator,
+      .ghost-button,
+      .contact-link__label {
+        font-family: var(--font-ui);
+        font-size: var(--label-size);
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .site-identity {
+        margin: 0;
+        color: var(--color-text-muted);
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .site-nav__links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav-link,
+      .menu-toggle,
+      .scroll-indicator,
+      .ghost-button,
+      .contact-link {
+        text-decoration: none;
+      }
+
+      .nav-link {
+        color: var(--color-text-muted);
+      }
+
+      .nav-link:hover,
+      .nav-link:focus-visible,
+      .contact-link:hover,
+      .contact-link:focus-visible {
+        color: var(--color-text);
+      }
+
+      .menu-toggle {
+        display: none;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--color-text-muted);
+        cursor: pointer;
+      }
+
+      .menu-toggle:hover,
+      .menu-toggle:focus-visible {
+        color: var(--color-text);
+      }
+
+      .mobile-menu {
+        display: none;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .mobile-menu[data-open="true"] {
+        display: block;
+      }
+
+      .mobile-menu__link {
+        display: block;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+        font-family: var(--font-ui);
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      main > section {
+        padding-block: var(--section-padding);
+      }
+
+      main > section + section {
+        border-top: 1px solid var(--color-border);
+      }
+
+      .hero {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero__frame {
+        min-height: calc(100svh - 6rem);
+        display: grid;
+        align-content: center;
+        gap: 2.5rem;
+      }
+
+      .hero__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(19rem, 25rem);
+        width: min(100%, 77rem);
+        margin-inline: auto;
+        gap: clamp(2.75rem, 6vw, 5rem);
+        align-items: center;
+      }
+
+      .hero__content {
+        display: grid;
+        gap: 1.75rem;
+        max-width: 42rem;
+      }
+
+      .hero__lede {
+        max-width: 38rem;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.95;
+        text-wrap: balance;
+      }
+
+      .hero__figure {
+        margin: 0;
+        display: grid;
+        gap: 0.9rem;
+        justify-self: end;
+      }
+
+      .hero__figure-frame {
+        padding: 0.9rem;
+        border: 1px solid var(--color-border);
+        background: rgba(225, 212, 191, 0.64);
+      }
+
+      .hero__figure-media {
+        aspect-ratio: 5 / 4;
+        overflow: hidden;
+      }
+
+      .hero__figure-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero__figure-caption {
+        max-width: 22rem;
+        color: var(--color-text-muted);
+        font-size: 0.97rem;
+        line-height: 1.75;
+      }
+
+      .metadata {
+        margin: 0;
+        color: var(--color-text-faint);
+      }
+
+      .metadata__divider {
+        display: inline-block;
+        margin-inline: 0.75rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+
+      h1 {
+        max-width: 12ch;
+        font-family: var(--font-serif);
+        font-size: clamp(3.5rem, 9vw, 9rem);
+        line-height: 0.95;
+        text-wrap: balance;
+      }
+
+      h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(2.5rem, 5vw, 5rem);
+        line-height: 0.98;
+      }
+
+      h3 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.7rem, 3vw, 2.45rem);
+        line-height: 1;
+      }
+
+      .byline {
+        font-size: 1rem;
+        letter-spacing: 0.03em;
+      }
+
+      .section-heading {
+        display: grid;
+        gap: 1rem;
+        margin-bottom: clamp(3rem, 6vw, 4.5rem);
+        text-align: center;
+      }
+
+      .section-heading--left {
+        text-align: left;
+      }
+
+      .section-heading--frame {
+        width: min(100%, 80rem);
+        margin-inline: auto;
+      }
+
+      .studies__frame,
+      .portfolio__frame,
+      .experience__frame,
+      .questions__frame,
+      .work__frame,
+      .fit__frame {
+        width: min(100%, var(--panel-width));
+        margin-inline: auto;
+        display: grid;
+        gap: clamp(2.5rem, 5vw, 3.75rem);
+        padding: clamp(1.75rem, 3vw, 2.75rem);
+        border: 1px solid var(--color-border);
+        background:
+          linear-gradient(180deg, var(--color-panel) 0%, var(--color-panel-strong) 100%);
+      }
+
+      .studies__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .studies__school {
+        display: grid;
+        grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+        gap: clamp(1.5rem, 4vw, 3rem);
+        align-items: start;
+        padding: clamp(0.5rem, 1vw, 0.75rem) 0 clamp(0.75rem, 1.4vw, 1rem);
+      }
+
+      .studies__school-copy {
+        display: grid;
+        gap: 1rem;
+        max-width: 52rem;
+      }
+
+      .studies__school-copy p {
+        color: var(--color-text-muted);
+        font-size: 1.08rem;
+        line-height: 1.85;
+      }
+
+      .study {
+        display: grid;
+        gap: 1.15rem;
+        min-height: clamp(18rem, 23vw, 22rem);
+        padding: clamp(2.25rem, 3.5vw, 3rem);
+        background: rgba(232, 219, 197, 0.18);
+      }
+
+      .study + .study {
+        border-left: 1px solid var(--color-border);
+      }
+
+      .study__icon {
+        width: 3.5rem;
+        height: 3.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--color-border);
+        background: rgba(225, 212, 191, 0.48);
+        color: var(--color-text-muted);
+      }
+
+      .study__icon svg {
+        width: 1.6rem;
+        height: 1.6rem;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.65;
+        fill: none;
+      }
+
+      .study__body {
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .study__body h3 {
+        font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+        line-height: 1.05;
+      }
+
+      .study__meta {
+        color: var(--color-text-faint);
+      }
+
+      .study__text {
+        color: var(--color-text-muted);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .studies__aside {
+        display: grid;
+        grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+        gap: clamp(1.75rem, 4vw, 3rem);
+        align-items: start;
+        padding-top: clamp(0.5rem, 1vw, 0.75rem);
+      }
+
+      .studies__figure {
+        margin: 0;
+        display: grid;
+        gap: 0.9rem;
+        max-width: 20rem;
+      }
+
+      .studies__figure-frame {
+        padding: 0.9rem;
+        border: 1px solid var(--color-border);
+        background: rgba(225, 212, 191, 0.56);
+      }
+
+      .studies__figure-media {
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+      }
+
+      .studies__figure-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .studies__figure-caption {
+        max-width: 22rem;
+        color: var(--color-text-muted);
+        font-size: 0.97rem;
+        line-height: 1.75;
+      }
+
+      .studies__note {
+        display: grid;
+        gap: 1.2rem;
+        align-content: start;
+        min-height: 100%;
+      }
+
+      .studies__note p {
+        max-width: 48rem;
+        color: var(--color-text-muted);
+        font-size: 1.08rem;
+        line-height: 1.85;
+      }
+
+      .philosophy__frame {
+        width: min(100%, 78rem);
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(17rem, 20rem);
+        gap: clamp(2.5rem, 6vw, 4.75rem);
+        align-items: start;
+      }
+
+      .philosophy__body {
+        width: auto;
+        margin-inline: auto;
+        display: grid;
+        gap: 2rem;
+        justify-items: start;
+        text-align: left;
+      }
+
+      .pull-quote {
+        max-width: 22ch;
+        font-family: var(--font-serif);
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        line-height: 1.1;
+        text-wrap: balance;
+      }
+
+      .prose {
+        display: grid;
+        gap: 1.35rem;
+        justify-items: stretch;
+      }
+
+      .prose p {
+        max-width: var(--reading-width);
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+      }
+
+      .philosophy__figure {
+        margin: 0;
+        display: grid;
+        gap: 0.9rem;
+        align-self: start;
+        max-width: 20rem;
+        justify-self: end;
+      }
+
+      .philosophy__figure-frame {
+        padding: 0.9rem;
+        border: 1px solid var(--color-border);
+        background: rgba(225, 212, 191, 0.56);
+      }
+
+      .philosophy__figure-media {
+        overflow: hidden;
+      }
+
+      .philosophy__figure-media img {
+        width: 100%;
+        height: auto;
+      }
+
+      .philosophy__figure-caption {
+        max-width: 22rem;
+        color: var(--color-text-muted);
+        font-size: 0.97rem;
+        line-height: 1.75;
+      }
+
+      .history__frame {
+        width: min(100%, 78rem);
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(18rem, 22rem);
+        gap: clamp(2.5rem, 6vw, 4.75rem);
+        align-items: start;
+      }
+
+      .history__body {
+        display: grid;
+        gap: 2rem;
+        justify-items: start;
+        text-align: left;
+      }
+
+      .history__figure {
+        margin: 0;
+        display: grid;
+        gap: 0.9rem;
+        align-self: start;
+        max-width: 22rem;
+        justify-self: end;
+      }
+
+      .history__figure-frame {
+        padding: 0.9rem;
+        border: 1px solid var(--color-border);
+        background: rgba(225, 212, 191, 0.56);
+      }
+
+      .history__figure-media {
+        overflow: hidden;
+      }
+
+      .history__figure-media img {
+        width: 100%;
+        height: auto;
+      }
+
+      .history__figure-caption {
+        max-width: 22rem;
+        color: var(--color-text-muted);
+        font-size: 0.97rem;
+        line-height: 1.75;
+      }
+
+      .portfolio__intro {
+        width: min(100%, 50rem);
+        margin: 0;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+      }
+
+      .experience__intro {
+        display: grid;
+        grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+      }
+
+      .experience__headline {
+        max-width: 14ch;
+      }
+
+      .experience__summary {
+        display: grid;
+        gap: 1.1rem;
+      }
+
+      .experience__summary p {
+        max-width: 46rem;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+      }
+
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1px;
+        padding: 1px;
+        background: var(--color-border);
+      }
+
+      .experience-card {
+        display: grid;
+        gap: 1.55rem;
+        min-height: clamp(23rem, 28vw, 29rem);
+        padding: clamp(2.35rem, 3.5vw, 3.15rem);
+        background: var(--color-bg);
+        transition:
+          background-color 500ms var(--ease-gentle),
+          border-color 300ms var(--ease-press);
+      }
+
+      .experience-card:hover,
+      .experience-card:focus-within {
+        background: var(--color-surface);
+      }
+
+      .experience-card__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--color-text-faint);
+      }
+
+      .experience-card__body {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .experience-card__body h3 {
+        line-height: 1.08;
+      }
+
+      .experience-card__role {
+        color: var(--color-text-faint);
+      }
+
+      .experience-card__description {
+        max-width: 34ch;
+        color: var(--color-text-muted);
+        font-size: 1.08rem;
+        line-height: 1.82;
+      }
+
+      .experience-card__details {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .experience-card__detail {
+        color: var(--color-text-faint);
+      }
+
+      .stack__frame {
+        width: min(100%, var(--panel-width));
+        margin-inline: auto;
+        display: grid;
+        gap: clamp(2.75rem, 6vw, 4rem);
+        padding: clamp(1.75rem, 3vw, 2.75rem);
+        border: 1px solid var(--color-border);
+        background:
+          linear-gradient(180deg, var(--color-panel) 0%, var(--color-panel-strong) 100%);
+      }
+
+      .stack__intro {
+        display: grid;
+        grid-template-columns: minmax(0, 25rem) minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+      }
+
+      .stack__headline {
+        max-width: 13ch;
+      }
+
+      .stack__summary {
+        display: grid;
+        gap: 1.1rem;
+      }
+
+      .stack__summary p {
+        max-width: 48rem;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+      }
+
+      .stack-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1px;
+        padding: 1px;
+        background: var(--color-border);
+      }
+
+      .stack-card {
+        display: grid;
+        gap: 1.2rem;
+        min-height: clamp(18rem, 24vw, 23rem);
+        padding: clamp(2.2rem, 3.3vw, 3rem);
+        background: var(--color-bg);
+        transition:
+          background-color 500ms var(--ease-gentle),
+          border-color 300ms var(--ease-press);
+      }
+
+      .stack-card:hover,
+      .stack-card:focus-within {
+        background: var(--color-surface);
+      }
+
+      .stack-card__meta {
+        color: var(--color-text-faint);
+      }
+
+      .stack-card__body {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .stack-card__body h3 {
+        line-height: 1.08;
+      }
+
+      .stack-card__text {
+        max-width: 38ch;
+        color: var(--color-text-muted);
+        font-size: 1.05rem;
+        line-height: 1.78;
+      }
+
+      .stack-card__details {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .stack-card__detail {
+        color: var(--color-text-faint);
+      }
+
+      .questions__intro {
+        width: min(100%, 52rem);
+        margin: 0;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+      }
+
+      .questions__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1px;
+        padding: 1px;
+        background: var(--color-border);
+      }
+
+      .question {
+        display: grid;
+        gap: 1.5rem;
+        min-height: clamp(20rem, 25vw, 25rem);
+        padding: clamp(2.35rem, 3.5vw, 3rem);
+        background: var(--color-bg);
+        transition:
+          background-color 500ms var(--ease-gentle),
+          border-color 300ms var(--ease-press);
+      }
+
+      .question:hover,
+      .question:focus-within {
+        background: var(--color-surface);
+      }
+
+      .question__meta {
+        color: var(--color-text-faint);
+      }
+
+      .question__body {
+        display: grid;
+        grid-template-columns: minmax(13rem, 16rem) minmax(0, 1fr);
+        gap: clamp(1.25rem, 2.8vw, 2.35rem);
+        align-items: start;
+      }
+
+      .question__title {
+        max-width: none;
+        font-size: clamp(1.5rem, 2.5vw, 2.15rem);
+        line-height: 1.08;
+        text-wrap: balance;
+      }
+
+      .question__text {
+        max-width: none;
+        color: var(--color-text-muted);
+        font-size: 1.08rem;
+        line-height: 1.85;
+      }
+
+      .question__note {
+        max-width: 42rem;
+        color: var(--color-text-faint);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .portfolio__grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1px;
+        padding: 1px;
+        background: var(--color-border);
+      }
+
+      .project {
+        grid-column: span 3;
+        display: grid;
+        gap: 2rem;
+        min-height: clamp(23rem, 28vw, 31rem);
+        padding: clamp(2.35rem, 3.8vw, 3.2rem);
+        background: var(--color-bg);
+        transition:
+          background-color 500ms var(--ease-gentle),
+          border-color 300ms var(--ease-press);
+      }
+
+      .project--compact {
+        grid-column: span 2;
+      }
+
+      .project:hover,
+      .project:focus-within {
+        background: var(--color-surface);
+      }
+
+      .project__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .project__category,
+      .project__status {
+        color: var(--color-text-faint);
+      }
+
+      .project__body {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .project h3 {
+        line-height: 1.08;
+      }
+
+      .project__title {
+        display: inline-block;
+        padding-bottom: 0.08em;
+        font-synthesis: none;
+      }
+
+      .project__description {
+        max-width: 38ch;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.85;
+      }
+
+      .project__details {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .project__detail {
+        color: var(--color-text-faint);
+      }
+
+      .ghost-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0.95rem 1.25rem;
+        border: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+        background: transparent;
+        transition:
+          color 300ms var(--ease-press),
+          background-color 300ms var(--ease-press);
+      }
+
+      .ghost-button--primary {
+        border-color: var(--color-text);
+        background: var(--color-text);
+        color: var(--color-bg);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+      }
+
+      .ghost-button:hover,
+      .ghost-button:focus-visible {
+        background: var(--color-text);
+        color: var(--color-bg);
+      }
+
+      .ghost-button--primary:hover,
+      .ghost-button--primary:focus-visible {
+        border-color: var(--color-text);
+        background: var(--color-surface);
+        color: var(--color-text);
+      }
+
+      .ghost-button[aria-disabled="true"] {
+        cursor: default;
+      }
+
+      .project__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .ghost-button--small {
+        padding: 0.8rem 1rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.17em;
+      }
+
+      .work__intro {
+        width: min(100%, 100%);
+        margin: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 27rem) minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+      }
+
+      .work__headline {
+        max-width: 12ch;
+      }
+
+      .work__summary {
+        display: grid;
+        gap: 1.1rem;
+      }
+
+      .work__summary p {
+        max-width: 44rem;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+      }
+
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1px;
+        padding: 1px;
+        background: var(--color-border);
+      }
+
+      .work-card {
+        display: grid;
+        gap: 1.2rem;
+        min-height: clamp(18rem, 23vw, 22rem);
+        padding: clamp(2.2rem, 3.3vw, 3rem);
+        background: var(--color-bg);
+        transition:
+          background-color 500ms var(--ease-gentle),
+          border-color 300ms var(--ease-press);
+      }
+
+      .work-card:hover,
+      .work-card:focus-within {
+        background: var(--color-surface);
+      }
+
+      .work-card__meta {
+        color: var(--color-text-faint);
+      }
+
+      .work-card__body {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .work-card__line {
+        color: var(--color-text-muted);
+        font-size: 1.05rem;
+        line-height: 1.65;
+      }
+
+      .fit__intro {
+        display: grid;
+        grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+      }
+
+      .fit__headline {
+        max-width: 14ch;
+      }
+
+      .fit__summary {
+        display: grid;
+        gap: 1.1rem;
+      }
+
+      .fit__summary p {
+        max-width: 46rem;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+      }
+
+      .fit-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1px;
+        padding: 1px;
+        background: var(--color-border);
+      }
+
+      .fit-card {
+        display: grid;
+        gap: 1.1rem;
+        min-height: clamp(19rem, 23vw, 24rem);
+        padding: clamp(2.2rem, 3.3vw, 3rem);
+        background: var(--color-bg);
+        transition:
+          background-color 500ms var(--ease-gentle),
+          border-color 300ms var(--ease-press);
+      }
+
+      .fit-card:hover,
+      .fit-card:focus-within {
+        background: var(--color-surface);
+      }
+
+      .fit-card__meta {
+        color: var(--color-text-faint);
+      }
+
+      .fit-card__body {
+        display: grid;
+        gap: 0.95rem;
+      }
+
+      .fit-card__line {
+        color: var(--color-text-muted);
+        font-size: 1.05rem;
+        line-height: 1.65;
+      }
+
+      .fit__closing {
+        width: min(100%, 48rem);
+        margin-inline: auto;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.9;
+        text-align: center;
+        text-wrap: balance;
+      }
+
+      .contact__body {
+        width: min(100%, 48rem);
+        margin-inline: auto;
+        display: grid;
+        gap: 2rem;
+        text-align: center;
+        justify-items: center;
+      }
+
+      .contact__headline {
+        max-width: 14ch;
+        margin-inline: auto;
+        text-wrap: balance;
+      }
+
+      .contact__context {
+        max-width: 36rem;
+        margin-inline: auto;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        line-height: 1.85;
+        text-wrap: balance;
+      }
+
+      .contact__links {
+        display: grid;
+        gap: 0.85rem;
+        justify-items: center;
+      }
+
+      .contact-link {
+        display: inline-flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        justify-content: center;
+        max-width: 100%;
+        color: var(--color-text-muted);
+      }
+
+      .contact-link__label {
+        color: var(--color-text-faint);
+      }
+
+      .contact-link span:last-child {
+        overflow-wrap: anywhere;
+        text-align: center;
+      }
+
+      .footer {
+        padding-block: 2.25rem 3rem;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.85rem 1.5rem;
+        color: var(--color-text-faint);
+        font-family: var(--font-ui);
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .scroll-indicator {
+        justify-self: center;
+        align-self: end;
+        color: var(--color-text-faint);
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      .has-js [data-reveal] {
+        opacity: 0;
+        transform: translateY(1.5rem);
+        transition:
+          opacity 1000ms var(--ease-gentle),
+          transform 1000ms var(--ease-gentle);
+      }
+
+      .has-js [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.35;
+        }
+
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .portfolio__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .project,
+        .project--compact {
+          grid-column: span 1;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero__grid,
+        .studies__grid,
+        .studies__school,
+        .studies__aside,
+        .philosophy__frame,
+        .history__frame,
+        .portfolio__frame,
+        .stack__frame,
+        .questions__frame,
+        .work__frame,
+        .questions__grid,
+        .portfolio__grid,
+        .experience__intro,
+        .stack__intro,
+        .stack-grid,
+        .experience-grid,
+        .work__intro,
+        .work-grid,
+        .fit__intro,
+        .fit-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .question__body {
+          grid-template-columns: 1fr;
+        }
+
+        .study + .study {
+          border-left: 0;
+          border-top: 1px solid var(--color-border);
+        }
+
+        .hero__content {
+          justify-items: center;
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .hero__lede,
+        .hero__figure-caption,
+        .philosophy__figure-caption,
+        .studies__figure-caption {
+          max-width: 100%;
+        }
+
+        .hero__figure {
+          justify-self: center;
+          width: min(100%, 24rem);
+        }
+
+        .philosophy__body,
+        .history__body,
+        .studies__figure,
+        .studies__note,
+        .philosophy__figure,
+        .history__figure,
+        .prose {
+          justify-items: center;
+          text-align: center;
+        }
+
+        .philosophy__figure {
+          width: min(100%, 28rem);
+          justify-self: center;
+        }
+
+        .history__figure {
+          width: min(100%, 24rem);
+          justify-self: center;
+        }
+
+        .studies__figure {
+          width: min(100%, 20rem);
+          justify-self: center;
+        }
+
+        .portfolio__intro {
+          margin-inline: auto;
+          text-align: center;
+        }
+
+        .questions__intro {
+          margin-inline: auto;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .site-nav__links {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .hero__frame {
+          min-height: 100svh;
+        }
+
+        .footer__inner {
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .scroll-indicator,
+        .has-js [data-reveal] {
+          animation: none;
+          transition: none;
+        }
+
+        .has-js [data-reveal] {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="wide-shell">
+        <div class="site-header__inner">
+          <p class="site-identity">ronakchakraborty.me</p>
+          <nav class="site-nav" aria-label="Main navigation">
+            <div class="site-nav__links">
+              <a class="nav-link" href="#philosophy">Philosophy</a>
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+              <a class="nav-link" href="#contact">Contact</a>
+            </div>
+            <button
+              class="menu-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              data-menu-toggle
+            >
+              Menu
+            </button>
+          </nav>
+        </div>
+        <div class="mobile-menu" id="mobile-menu" data-open="false">
+          <a class="mobile-menu__link" href="#philosophy">Philosophy</a>
+          <a class="mobile-menu__link" href="#portfolio">Portfolio</a>
+          <a class="mobile-menu__link" href="#contact">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="hero" class="hero" aria-label="Introduction">
+        <div class="wide-shell hero__frame" data-reveal>
+          <div class="hero__grid">
+            <div class="hero__content">
+              <p class="metadata">
+                <span>Bloomington, Indiana</span>
+                <span class="metadata__divider" aria-hidden="true">✦</span>
+                April 2026
+              </p>
+              <h1>I work on the systems beneath everyday life.</h1>
+              <p class="byline">Ronak Chakraborty</p>
+              <p class="hero__lede">
+                Bay Area raised and finishing college in Bloomington. I build AI products and work on operational problems, but most of my curiosity starts lower to the ground. I like cities, transit, restaurant geography, and the everyday systems that decide whether a day feels smooth or needlessly difficult.
+              </p>
+            </div>
+
+            <figure class="hero__figure">
+              <div class="hero__figure-frame">
+                <div class="hero__figure-media">
+                  <img src="./iu-clock.jpg" alt="Red clock with spring tulips on Indiana University Bloomington campus">
+                </div>
+              </div>
+              <figcaption class="hero__figure-caption">
+                Shoutout Indiana University Bloomington! I have loved my time here and am so so grateful for the people, classes, and opportunities that have shaped the last few years of my life.
+              </figcaption>
+            </figure>
+          </div>
+          <a class="scroll-indicator" href="#philosophy">Scroll</a>
+        </div>
+      </section>
+
+      <section id="study-focus">
+        <div class="wide-shell">
+          <div class="studies__frame" data-reveal>
+            <div class="section-heading section-heading--frame section-heading--left">
+              <p class="section-label">Study and focus</p>
+              <h2>What I Studied</h2>
+            </div>
+            <div class="studies__school" data-reveal>
+              <p class="section-label section-label--left">Kelley School of Business</p>
+              <div class="studies__school-copy">
+                <p>
+                  Kelley is genuinely one of the strongest undergraduate business schools in the country. The undergraduate program is ranked No. 8 in the U.S., it offers 20 majors and co-majors, and more than 1,450 companies hired Kelley students for internships and full-time roles in the last year.
+                </p>
+                <p>
+                  What made it good for me was how close everything stayed to real work. The school gave me formal grounding in operations, analytics, and finance, but it also kept pushing all of that toward recruiting, workshops, student organizations, and actual decisions about the kind of work I wanted to be near.
+                </p>
+              </div>
+            </div>
+            <div class="studies__grid" aria-label="Majors, minor, and focus areas">
+              <article class="study">
+                <div class="study__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 7h6v4H4z"></path>
+                    <path d="M14 13h6v4h-6z"></path>
+                    <path d="M7 11v2c0 1.1.9 2 2 2h5"></path>
+                    <path d="M17 13v-2c0-1.1-.9-2-2-2h-5"></path>
+                  </svg>
+                </div>
+                <div class="study__body">
+                  <h3>Supply Chain Management</h3>
+                  <p class="study__meta metadata">Major</p>
+                  <p class="study__text">
+                    Logistics, distribution, and the physical systems that decide whether flow feels smooth or fragile.
+                  </p>
+                </div>
+              </article>
+
+              <article class="study">
+                <div class="study__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 18h16"></path>
+                    <path d="M7 15l3-4 3 2 4-6"></path>
+                    <circle cx="7" cy="15" r="1.2"></circle>
+                    <circle cx="10" cy="11" r="1.2"></circle>
+                    <circle cx="13" cy="13" r="1.2"></circle>
+                    <circle cx="17" cy="7" r="1.2"></circle>
+                  </svg>
+                </div>
+                <div class="study__body">
+                  <h3>Business Data Analytics</h3>
+                  <p class="study__meta metadata">Major</p>
+                  <p class="study__text">
+                    Predictive analysis, modeling, and decision support for environments where numbers have to change real choices.
+                  </p>
+                </div>
+              </article>
+
+              <article class="study">
+                <div class="study__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 20h16"></path>
+                    <path d="M6 20V10"></path>
+                    <path d="M10 20V10"></path>
+                    <path d="M14 20V10"></path>
+                    <path d="M18 20V10"></path>
+                    <path d="M3 10l9-5 9 5"></path>
+                  </svg>
+                </div>
+                <div class="study__body">
+                  <h3>Public and Environmental Affairs</h3>
+                  <p class="study__meta metadata">Minor</p>
+                  <p class="study__text">
+                    Institutions, urban systems, and the public-facing structures people move through every day.
+                  </p>
+                </div>
+              </article>
+
+              <article class="study">
+                <div class="study__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 4v16"></path>
+                    <path d="M4 12h16"></path>
+                    <path d="M6.5 6.5l11 11"></path>
+                    <path d="M17.5 6.5l-11 11"></path>
+                  </svg>
+                </div>
+                <div class="study__body">
+                  <h3>Current Focus</h3>
+                  <p class="study__meta metadata">Applied lane</p>
+                  <p class="study__text">
+                    AI products, operational tooling, and city-scale questions about trust, friction, and everyday usability.
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="studies__aside">
+              <figure class="studies__figure">
+                <div class="studies__figure-frame">
+                  <div class="studies__figure-media">
+                    <img src="./portrait.jpg" alt="Ronak Chakraborty standing on a train platform">
+                  </div>
+                </div>
+                <figcaption class="studies__figure-caption">
+                  The classroom mattered, but so did everything around it, the commutes, city movement, and the way school kept overlapping with the rest of real life.
+                </figcaption>
+              </figure>
+              <div class="studies__note">
+                <p>
+                  Kelley gave me the formal side of operations, analytics, and finance, but a lot of what I actually care about never actually lived inside the classroom. I kept getting pulled toward the systems people really have to move through and the point where something either helps or quietly gets in the way.
+                </p>
+                <p>
+                  That showed up everywhere. In warehouse work, it looked like flow and damage risk. In finance, it looked like whether a system actually helped someone stay oriented. In transit and city life, it looked like whether movement felt intuitive or weirdly heavy for no good reason.
+                </p>
+                <p>
+                  So this section is partly about what I studied, but also about the way I learned to look at the world. The majors matter. The lens matters more, and honestly that is the part I am taking with me.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="philosophy">
+        <div class="wide-shell">
+          <div class="section-heading section-heading--frame section-heading--left" data-reveal>
+            <p class="section-label">Operating belief</p>
+            <h2>Philosophy</h2>
+          </div>
+          <div class="philosophy__frame" data-reveal>
+            <div class="philosophy__body">
+              <p class="pull-quote">
+                The best system earns trust by disappearing.
+              </p>
+              <div class="prose">
+                <p>
+                  The idea I come back to most is friction. If a tool, process, or institution keeps asking people to stop, translate, troubleshoot, or second-guess themselves, something is probably wrong. I care about the point where a system stops supporting life and starts asking to be managed.
+                </p>
+                <p>
+                  That belief reaches beyond software. I notice it in transit and paperwork and warehouse flow, and in the way a city either carries you through the day or makes every simple errand feel heavier than it should. A lot of what gets framed as a discipline problem is really an environment problem.
+                </p>
+                <p>
+                  It also explains the work I keep choosing. TJX and Sparse Halo look nothing alike on paper, but both became interesting to me for the same reason. I wanted to find the extra steps, the ambiguity, or the repeated cleanup, then turn that mess into something a real person could move through with less resistance. The same instinct is part of why finance-process cleanup has felt meaningful to me too.
+                </p>
+                <p>
+                  That is the through-line for me. I like tools and teams and places that feel considered enough to let you stay inside your own life instead of fighting the mechanics around it. When something works well, it gives your attention back.
+                </p>
+              </div>
+            </div>
+            <figure class="philosophy__figure">
+              <div class="philosophy__figure-frame">
+                <div class="philosophy__figure-media">
+                  <img src="./dolores-burrito.jpg" alt="First-person view of a Mission burrito at Dolores Park with the San Francisco skyline in the background">
+                </div>
+              </div>
+              <figcaption class="philosophy__figure-caption">
+                Mission burrito at Dolores Park is peak 🤌🏽
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="background">
+        <div class="wide-shell">
+          <div class="section-heading section-heading--frame section-heading--left" data-reveal>
+            <p class="section-label">Personal history</p>
+            <h2>Where I&apos;m From</h2>
+          </div>
+          <div class="history__frame" data-reveal>
+            <div class="history__body">
+              <div class="prose">
+                <p>
+                  I grew up in the Bay Area, and moving from Sunnyvale to Cupertino to San Ramon really solidified that itself as my home more than any individual city. The Bay has always felt like a single place to me, even as the textures of that place shifted around me. I have so many memories from so many parts of the Bay, but from The Tenderloin to Santana Row, somehow it's all always felt like home to me.
+                </p>
+                <p>
+                  That is still what I love about it. The Bay can hold a lot of different textures at once, and it rewards curiosity. You can move from a quiet neighborhood to a crowded city block to an open stretch of coast in the same day and still feel like you are inside one coherent place.
+                </p>
+                <p>
+                  My family is Bengali, and both of my parents are from Kolkata in West Bengal. Growing up in California with that background gave me a layered sense of home. Food, family, community, and place were always tied together, and that still shapes the way I think about belonging.
+                </p>
+                <p>
+                  College took me to Bloomington, which has been an important chapter because that distance taught me so many lessons about myself I never could have learned back home. Long term, I still see myself building a life on the West Coast, close to the kinds of cities, coastlines, and everyday rhythms that have always felt most natural to me.
+                </p>
+              </div>
+            </div>
+            <figure class="history__figure">
+              <div class="history__figure-frame">
+                <div class="history__figure-media">
+                  <img src="./four-mile-bonfire.jpg" alt="Friends sitting around a small bonfire on 4 Mile Beach near Santa Cruz at dusk">
+                </div>
+              </div>
+              <figcaption class="history__figure-caption">
+                4 Mile Beach is still one of my favorite places in the Bay (yes santa cruz is part of the bay don't @ me). The walk in makes it feel earned, and that's always why the days stay with me.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <div class="wide-shell">
+          <div class="section-heading section-heading--left" data-reveal>
+            <p class="section-label">Selected work</p>
+            <h2>Portfolio</h2>
+          </div>
+          <div class="portfolio__frame">
+            <p class="portfolio__intro" data-reveal>
+              The projects that feel most representative to me usually begin with a point of friction and end with something people can move through more clearly.
+            </p>
+            <div class="portfolio__grid" data-reveal>
+              <article class="project">
+              <div class="project__meta">
+                <p class="project__category metadata">AI product / live build</p>
+                <p class="project__status metadata">Live at sparsehalo.xyz</p>
+              </div>
+              <div class="project__body">
+                <h3><span class="project__title">Sparse Halo</span></h3>
+                <p class="project__description">
+                  Sparse Halo started from a simple dissatisfaction. Most AI tools either hide their reasoning or project confidence they have not earned. I built it into a private product family where Cabinet handles multi-model draft, critique, and synthesis, while adjacent surfaces cover faster chat and SAT workflows.
+                </p>
+                <div class="project__details">
+                  <p class="project__detail metadata">
+                    Next.js • FastAPI • SSE streaming • OpenRouter • role-based orchestration
+                  </p>
+                  <p class="project__detail metadata">
+                    Cabinet • Chat • SAT Prep • session artifacts • access gating
+                  </p>
+                  <a
+                    class="ghost-button ghost-button--primary"
+                    href="https://www.sparsehalo.xyz"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Visit live product
+                  </a>
+                </div>
+              </div>
+              </article>
+
+              <article class="project">
+              <div class="project__meta">
+                <p class="project__category metadata">Operations / analytics case</p>
+                <p class="project__status metadata">Projected at ~$75K annual savings per warehouse</p>
+              </div>
+              <div class="project__body">
+                <h3><span class="project__title">Routing and Risk at TJX</span></h3>
+                <p class="project__description">
+                  TJX was a louder, faster, and more physical environment than most of my other work. I built a Python pre-routing tool and paired it with Power BI plus live BlueYonder data to surface outbound damage risk across a high-volume warehouse. It was the clearest proof I&rsquo;ve had that I like work where analysis can change a real decision the same day.
+                </p>
+                <div class="project__details">
+                  <p class="project__detail metadata">
+                    Python • Power BI • BlueYonder SCM • warehouse operations
+                  </p>
+                  <p class="project__detail metadata">
+                    40+ dock doors • 4,000 to 10,000 units daily • leadership-facing risk reporting
+                  </p>
+                  <p class="project__detail metadata">
+                    Related finance systems exposure, Oracle Fusion Cloud AR workflows at SiTime
+                  </p>
+                </div>
+              </div>
+              </article>
+
+              <article class="project project--compact">
+              <div class="project__meta">
+                <p class="project__category metadata">AI research / product judgment</p>
+                <p class="project__status metadata">Internal paper series, spring 2026</p>
+              </div>
+              <div class="project__body">
+                <h3><span class="project__title">Cabinet Research Series</span></h3>
+                <p class="project__description">
+                  Honestly, ever since Perplexity locked pro plans out of the "Agent Council" feature, I've been especially fascinated with just how important multi-agent AI really was. That research was the both the foundation and the purpose for which I built Sparse Halo, and its Cabinet mode. I wrote a short research series on when debate helps, when it just adds cost, and how synthesis plus anti-sycophancy signals should shape the system.
+                </p>
+                <div class="project__details">
+                  <p class="project__detail metadata">
+                    Structured Deliberative AI Study • Task-Type Routing Study • Confidence-Weighted Synthesis Study
+                  </p>
+                  <a
+                    class="ghost-button ghost-button--primary"
+                    href="https://sparsehalo.xyz/research"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Visit research series
+                  </a>
+                </div>
+              </div>
+              </article>
+
+              <article class="project project--compact">
+              <div class="project__meta">
+                <p class="project__category metadata">Personal systems / AI memory architecture</p>
+                <p class="project__status metadata">700+ linked notes and growing daily</p>
+              </div>
+              <div class="project__body">
+                <h3><span class="project__title">Personal Memory System</span></h3>
+                <p class="project__description">
+                  What started as a fix for context loss turned into a private memory operating system for AI collaboration. Inspired in part by Andrej Karpathy&rsquo;s recent LLM wiki direction, I built myself a selective Obsidian Brain that knows everything about me, my preferences, my writing style, exactly how I think, and much more. Alongside a retrieval rule layer, and an archive bridge, this allows models plugged into the vault to work against a living continuity substrate instead of having to starting with amnesia. Actually, that brain was used to shape, build and write this website!
+                </p>
+                <div class="project__details">
+                  <p class="project__detail metadata">
+                    Obsidian graph • retrieval calibration • archive bridge • continuity design
+                  </p>
+                  <p class="project__detail metadata">
+                    Andrej Karpathy influence • site-building memory layer • voice preservation • low-friction context
+                  </p>
+                  <div class="project__actions">
+                    <a
+                      class="ghost-button ghost-button--primary ghost-button--small"
+                      href="https://www.youtube.com/watch?v=en56OKg5hyc"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Simple explainer
+                    </a>
+                    <a
+                      class="ghost-button ghost-button--small"
+                      href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Karpathy note
+                    </a>
+                  </div>
+                </div>
+              </div>
+              </article>
+
+              <article class="project project--compact">
+              <div class="project__meta">
+                <p class="project__category metadata">Urban systems / place research</p>
+                <p class="project__status metadata">Summer 2024 research study</p>
+              </div>
+              <div class="project__body">
+                <h3><span class="project__title">Transit and Development Research</span></h3>
+                <p class="project__description">
+                  Working with B-Top Advocacy and Bloomington Transit gave me a more concrete way to think about cities. The work supported Bloomington Transit&rsquo;s five- to seven-year planning and sharpened my interest in how transportation investment can improve daily life, strengthen communities, and shape the development of a place over time. It remains one of the clearest bridges between my public-systems interest and my business training.
+                </p>
+                <div class="project__details">
+                  <p class="project__detail metadata">
+                    B-Top Advocacy • Bloomington Transit • five- to seven-year planning
+                  </p>
+                  <p class="project__detail metadata">
+                    public systems • community impact • place development
+                  </p>
+                </div>
+              </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="wide-shell">
+          <div class="section-heading" data-reveal>
+            <p class="section-label">Professional experience</p>
+            <h2>Experience</h2>
+          </div>
+          <div class="experience__frame" data-reveal>
+            <div class="experience__intro">
+              <p class="pull-quote experience__headline">
+                The job history is broad on paper, but the pattern is pretty consistent.
+              </p>
+              <div class="experience__summary">
+                <p>
+                  Most of my actual work experience has sat close to operations, coordination, and day-to-day problem solving. Sometimes that has looked like a warehouse, sometimes finance-process cleanup, and sometimes direct teaching plus small-team responsibility.
+                </p>
+                <p>
+                  The common thread is that I tend to do well in roles where trust matters, the system is tangible, and better judgment can leave the work in better shape by the end of the day.
+                </p>
+              </div>
+            </div>
+            <div class="experience-grid">
+              <article class="experience-card">
+                <div class="experience-card__meta">
+                  <p class="metadata">Supply chain / operations internship</p>
+                  <p class="metadata">Evansville, Indiana</p>
+                </div>
+                <div class="experience-card__body">
+                  <h3>TJX Companies</h3>
+                  <p class="experience-card__role metadata">Supply Chain and Operations Intern</p>
+                  <p class="experience-card__description">
+                    I worked inside a high-volume distribution environment where the work was fast, physical, and visible. My lane focused on outbound flow risk, especially where routing, damage, rework, and fluctuating volume started to compound.
+                  </p>
+                </div>
+                <div class="experience-card__details">
+                  <p class="experience-card__detail metadata">
+                    Python pre-routing tool • Power BI • BlueYonder SCM
+                  </p>
+                  <p class="experience-card__detail metadata">
+                    managed teams of 10 to 20 associates • 40+ dock doors • 4,000 to 10,000 units daily
+                  </p>
+                </div>
+              </article>
+
+              <article class="experience-card">
+                <div class="experience-card__meta">
+                  <p class="metadata">Finance / systems internship</p>
+                  <p class="metadata">Semiconductor operations</p>
+                </div>
+                <div class="experience-card__body">
+                  <h3>SiTime</h3>
+                  <p class="experience-card__role metadata">Finance and Accounts Receivable Intern</p>
+                  <p class="experience-card__description">
+                    This role gave me early exposure to operational finance that was more hands-on than people usually expect from a first internship. I worked directly with customers and vendors, cleaned up receivables backlog, and helped keep the billing side of the system legible.
+                  </p>
+                </div>
+                <div class="experience-card__details">
+                  <p class="experience-card__detail metadata">
+                    Oracle Fusion Cloud Financials • AR cleanup • aging reports
+                  </p>
+                  <p class="experience-card__detail metadata">
+                    international communication • month-end support • billing reconciliation
+                  </p>
+                </div>
+              </article>
+
+              <article class="experience-card">
+                <div class="experience-card__meta">
+                  <p class="metadata">Instruction / leadership work</p>
+                  <p class="metadata">Dublin, California</p>
+                </div>
+                <div class="experience-card__body">
+                  <h3>Empower Martial Arts</h3>
+                  <p class="experience-card__role metadata">Instructor</p>
+                  <p class="experience-card__description">
+                    This was my first paying job and still one of the clearest foundations for how I work with people. Because I was often teaching students who were older than me and sometimes higher ranked than me, I learned early that leadership depends on trust in your example and your instruction. Title alone was never enough.
+                  </p>
+                </div>
+                <div class="experience-card__details">
+                  <p class="experience-card__detail metadata">
+                    400+ students taught • assistant-team coordination
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="stack">
+        <div class="wide-shell">
+          <div class="section-heading" data-reveal>
+            <p class="section-label">Tools and systems</p>
+            <h2>Technical Stack</h2>
+          </div>
+          <div class="stack__frame" data-reveal>
+            <div class="stack__intro">
+              <p class="pull-quote stack__headline">
+                These are the tools I actually use, not a keyword cloud.
+              </p>
+              <div class="stack__summary">
+                <p>
+                  A lot of my work sits at the overlap of operations, analytics, AI product building, and finance systems, so the stack is a little broader than a normal one-lane technical profile. These are the tools I am genuinely comfortable working in and the ones that keep showing up in real projects.
+                </p>
+                <p>
+                  The through-line is pretty consistent. I like tools that help make a live system more legible, whether that system is a warehouse, a finance workflow, an AI product, or my own research and memory infrastructure.
+                </p>
+              </div>
+            </div>
+            <div class="stack-grid">
+              <article class="stack-card">
+                <p class="stack-card__meta metadata">Analytics / reporting</p>
+                <div class="stack-card__body">
+                  <h3>Data and decision support</h3>
+                  <p class="stack-card__text">
+                    This is the oldest and most stable part of the stack. I am comfortable using data tools to surface what matters, build clear reporting, and turn noisy process information into something another person can actually act on.
+                  </p>
+                </div>
+                <div class="stack-card__details">
+                  <p class="stack-card__detail metadata">
+                    Excel • Power BI • RStudio • predictive modeling • reporting logic
+                  </p>
+                  <p class="stack-card__detail metadata">
+                    AR and aging reports • reconciliation workflows • dashboarding
+                  </p>
+                </div>
+              </article>
+
+              <article class="stack-card">
+                <p class="stack-card__meta metadata">Enterprise / operations systems</p>
+                <div class="stack-card__body">
+                  <h3>Operational software</h3>
+                  <p class="stack-card__text">
+                    I have spent real time inside the software layers that support finance and distribution work. What matters most to me here is whether the system helps teams stay oriented and move cleanly.
+                  </p>
+                </div>
+                <div class="stack-card__details">
+                  <p class="stack-card__detail metadata">
+                    BlueYonder SCM • Oracle Fusion Cloud Financials • workflow mapping
+                  </p>
+                  <p class="stack-card__detail metadata">
+                    logistics and distribution data • receivables cleanup • finance-process discipline
+                  </p>
+                </div>
+              </article>
+
+              <article class="stack-card">
+                <p class="stack-card__meta metadata">AI product / web stack</p>
+                <div class="stack-card__body">
+                  <h3>What I use to build</h3>
+                  <p class="stack-card__text">
+                    Sparse Halo pushed me into a much more complete product stack than anything I had done before. The point for me is being able to ship real things, understand how the pieces fit together, and make useful product decisions across the stack.
+                  </p>
+                </div>
+                <div class="stack-card__details">
+                  <p class="stack-card__detail metadata">
+                    Next.js • React • TypeScript • Tailwind • FastAPI • Pydantic
+                  </p>
+                  <p class="stack-card__detail metadata">
+                    OpenRouter • Auth.js • Upstash Redis • Vercel • Render • GitHub
+                  </p>
+                </div>
+              </article>
+
+              <article class="stack-card">
+                <p class="stack-card__meta metadata">Workflow / memory / automation</p>
+                <div class="stack-card__body">
+                  <h3>Systems I think inside</h3>
+                  <p class="stack-card__text">
+                    This is the part of the stack that ties the rest together. I use software to analyze, build, preserve context, organize work, and reduce repeated setup costs across projects and daily life.
+                  </p>
+                </div>
+                <div class="stack-card__details">
+                  <p class="stack-card__detail metadata">
+                    Obsidian • AI automation • workflow logic • local scripting
+                  </p>
+                  <p class="stack-card__detail metadata">
+                    Python foundation for automation and prototyping • continuity design • research infrastructure
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="current-questions">
+        <div class="wide-shell">
+          <div class="section-heading section-heading--left" data-reveal>
+            <p class="section-label">Curiosity lane</p>
+            <h2>What Holds My Attention</h2>
+          </div>
+          <div class="questions__frame">
+            <p class="questions__intro" data-reveal>
+              A few questions I keep circling, whether I am building something, reading around it, or just trying to understand why certain systems feel calmer and more trustworthy than others.
+            </p>
+            <div class="questions__grid" data-reveal>
+              <article class="question">
+              <p class="question__meta metadata">AI products / reasoning interfaces</p>
+              <div class="question__body">
+                <h3 class="question__title">When does orchestration actually help?</h3>
+                <p class="question__text">
+                  I keep coming back to the line between useful deliberation and expensive theater. A lot of multi-agent design sounds impressive before it becomes practical, so I am interested in where synthesis, routing, and critique earn their keep.
+                </p>
+              </div>
+              <p class="question__note">
+                This question sits underneath Cabinet, the research series, and most of my skepticism about AI product theater.
+              </p>
+              </article>
+
+              <article class="question">
+              <p class="question__meta metadata">Trust / everyday systems</p>
+              <div class="question__body">
+                <h3 class="question__title">What makes a system feel trustworthy?</h3>
+                <p class="question__text">
+                  The answer is rarely just speed. I am more interested in the point where a person stops bracing for confusion, cleanup, or second-guessing and starts trusting the system to carry some weight for them.
+                </p>
+              </div>
+              <p class="question__note">
+                It is the same instinct behind the friction section above and a lot of the operational work I like most.
+              </p>
+              </article>
+
+              <article class="question">
+              <p class="question__meta metadata">Cities / movement / place</p>
+              <div class="question__body">
+                <h3 class="question__title">What changes when movement gets easier?</h3>
+                <p class="question__text">
+                  Transit and walkability are interesting to me because they change more than travel time. They change density, land value, business conditions, and the feel of a place, which is another way of saying they change daily life itself.
+                </p>
+              </div>
+              <p class="question__note">
+                That is why the transit research still matters to me. It feels like a real bridge between policy, business, and lived experience.
+              </p>
+              </article>
+
+              <article class="question">
+              <p class="question__meta metadata">Finance / decision support</p>
+              <div class="question__body">
+                <h3 class="question__title">How should finance tools feel in real life?</h3>
+                <p class="question__text">
+                  Personal finance, investing, and financial services are all genuinely important to me. I am especially drawn to tools that help someone stay oriented without turning attention into a full-time job, which is part of why I keep coming back to calmer monitoring, political-trade signals, and decision support that feels useful instead of noisy.
+                </p>
+              </div>
+              <p class="question__note">
+                It is also part of why I keep coming back to portfolio-support tools and broader financial-services questions even when I have paused some of the builds for cost or complexity.
+              </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-i-work">
+        <div class="wide-shell">
+          <div class="section-heading" data-reveal>
+            <p class="section-label">Working style</p>
+            <h2>How I Work</h2>
+          </div>
+          <div class="work__frame">
+            <div class="work__intro" data-reveal>
+              <p class="pull-quote work__headline">
+                The through-line in my work is less about one title than one work shape.
+              </p>
+              <div class="work__summary">
+                <p>
+                  I do my best work around real systems with real users, whether that means a warehouse floor, an internal workflow, or a tool that helps someone think more clearly. I like work that is practical enough to matter and open enough to be shaped.
+                </p>
+                <p>
+                  That usually means some combination of rapport, analysis, messy operations, and enough ownership to leave the system in better condition than I found it.
+                </p>
+              </div>
+            </div>
+            <div class="work-grid" data-reveal>
+              <section class="work-card" aria-labelledby="teams-heading">
+              <p class="work-card__meta metadata">People and trust</p>
+              <h3 id="teams-heading">With teams</h3>
+              <div class="work-card__body">
+                <p class="work-card__line">Rapport matters to me, especially in frontline or operational settings.</p>
+                <p class="work-card__line">I like staying close to the people doing the work rather than managing from a distance.</p>
+                <p class="work-card__line">The best teams feel capable, self-aware, and human at the same time.</p>
+              </div>
+              </section>
+
+              <section class="work-card" aria-labelledby="problems-heading">
+              <p class="work-card__meta metadata">Messy systems</p>
+              <h3 id="problems-heading">With problems</h3>
+              <div class="work-card__body">
+                <p class="work-card__line">I do my best work when the problem starts messy and nobody has fully imposed structure yet.</p>
+                <p class="work-card__line">I like ambiguity when it comes with ownership, a deadline, and room to build an intervention.</p>
+                <p class="work-card__line">I would rather improve a system than spend every day only watching a KPI.</p>
+              </div>
+              </section>
+
+              <section class="work-card" aria-labelledby="translation-heading">
+              <p class="work-card__meta metadata">Analysis and translation</p>
+              <h3 id="translation-heading">With information</h3>
+              <div class="work-card__body">
+                <p class="work-card__line">A lot of my value comes from turning messy information into something other people can actually use.</p>
+                <p class="work-card__line">I care about reporting, tools, and explanations that help people move instead of freezing them in extra detail.</p>
+                <p class="work-card__line">The technical side matters to me most when it sharpens judgment rather than becoming its own performance.</p>
+              </div>
+              </section>
+
+              <section class="work-card" aria-labelledby="decisions-heading">
+              <p class="work-card__meta metadata">Execution and impact</p>
+              <h3 id="decisions-heading">With decisions</h3>
+              <div class="work-card__body">
+                <p class="work-card__line">I want to work close to the point where analysis changes a real choice.</p>
+                <p class="work-card__line">Planning, operations, AI tooling, supply chain, and finance systems all fit that pattern for me.</p>
+                <p class="work-card__line">The common thread is practical responsibility and work that is legible in the real world.</p>
+              </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="looking-for">
+        <div class="wide-shell">
+          <div class="section-heading" data-reveal>
+            <p class="section-label">Best fit</p>
+            <h2>What I&apos;m Looking For</h2>
+          </div>
+          <div class="fit__frame" data-reveal>
+            <div class="fit__intro">
+              <p class="pull-quote fit__headline">
+                I am open to a fairly wide range of roles right now, and that breadth is real.
+              </p>
+              <div class="fit__summary">
+                <p>
+                  The simplest version is that I am looking for work that is analytical, operational, and close enough to execution that better judgment can actually change something. That can show up in more than one form.
+                </p>
+                <p>
+                  One end of the range looks like AI operations, internal tooling, or workflow acceleration. Another looks like warehouse leadership, supply chain execution, planning, allocation, financial services, or other roles where people, process, and decisions all touch the same system.
+                </p>
+              </div>
+            </div>
+            <div class="fit-grid">
+              <section class="fit-card" aria-labelledby="fit-lanes-heading">
+                <p class="fit-card__meta metadata">Broad lanes</p>
+                <h3 id="fit-lanes-heading">What kinds of roles fit</h3>
+                <div class="fit-card__body">
+                  <p class="fit-card__line">AI operations and workflow improvement</p>
+                  <p class="fit-card__line">Internal tools, automation, and business systems</p>
+                  <p class="fit-card__line">Supply chain, warehouse operations, and operational leadership</p>
+                  <p class="fit-card__line">Planning, allocation, financial services, finance systems, and analyst roles tied to execution</p>
+                </div>
+              </section>
+
+              <section class="fit-card" aria-labelledby="fit-environment-heading">
+                <p class="fit-card__meta metadata">What the environment should feel like</p>
+                <h3 id="fit-environment-heading">Where I tend to do well</h3>
+                <div class="fit-card__body">
+                  <p class="fit-card__line">Teams that invest in early talent and give real responsibility</p>
+                  <p class="fit-card__line">Cross-functional environments where communication matters as much as analysis</p>
+                  <p class="fit-card__line">Places with enough ambiguity to build judgment and real ownership</p>
+                  <p class="fit-card__line">Work that produces concrete proof and visible results</p>
+                </div>
+              </section>
+
+              <section class="fit-card" aria-labelledby="fit-thread-heading">
+                <p class="fit-card__meta metadata">What ties the range together</p>
+                <h3 id="fit-thread-heading">The shared thread</h3>
+                <div class="fit-card__body">
+                  <p class="fit-card__line">I care about systems that affect real people and real decisions.</p>
+                  <p class="fit-card__line">I want a role that is structured enough to learn from and alive enough to shape.</p>
+                  <p class="fit-card__line">If the work helps make something clearer, calmer, faster, or more trustworthy, I am usually interested.</p>
+                  <p class="fit-card__line">The title can vary a lot as long as that underlying shape is still there.</p>
+                </div>
+              </section>
+            </div>
+            <p class="fit__closing">
+              That is why the current spread is wide. I can genuinely imagine myself in AI operations on one side, financial-services or investing-adjacent work in another lane, and warehouse or supply chain leadership on the other, because all of them still come back to understanding a live system, earning trust inside it, and improving how it runs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-shell">
+          <div class="section-heading" data-reveal>
+            <p class="section-label">Reach out</p>
+            <h2>Contact Me</h2>
+          </div>
+          <div class="contact__body" data-reveal>
+            <p class="pull-quote contact__headline">If the work feels relevant, I&rsquo;d be glad to talk.</p>
+            <p class="contact__context">
+              The best conversations usually start around AI products, operations, finance systems, cities, or whatever ordinary-looking system has recently taken over my attention.
+            </p>
+            <div class="contact__links">
+              <a
+                class="contact-link"
+                href="mailto:ronchak@iu.edu"
+                aria-label="Email ronchak@iu.edu"
+              >
+                <span class="contact-link__label">Email</span>
+                <span>ronchak@iu.edu</span>
+              </a>
+              <a
+                class="contact-link"
+                href="https://linkedin.com/in/ronakchakraborty/"
+                aria-label="LinkedIn linkedin.com/in/ronakchakraborty"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span class="contact-link__label">LinkedIn</span>
+                <span>linkedin.com/in/ronakchakraborty</span>
+              </a>
+              <a
+                class="contact-link"
+                href="https://github.com/ronchak"
+                aria-label="GitHub github.com/ronchak"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span class="contact-link__label">GitHub</span>
+                <span>github.com/ronchak</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wide-shell footer__inner">
+        <p>© 2026 Ronak Chakraborty</p>
+        <p>Bloomington, Indiana • Bay Area raised</p>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.querySelector("[data-menu-toggle]");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuLinks = document.querySelectorAll(".mobile-menu__link");
+      const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (menuToggle && mobileMenu) {
+        const closeMenu = () => {
+          mobileMenu.dataset.open = "false";
+          menuToggle.setAttribute("aria-expanded", "false");
+        };
+
+        menuToggle.addEventListener("click", () => {
+          const isOpen = mobileMenu.dataset.open === "true";
+          mobileMenu.dataset.open = String(!isOpen);
+          menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        });
+
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            closeMenu();
+          });
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 768) {
+            closeMenu();
+          }
+        });
+      }
+
+      const revealElements = document.querySelectorAll("[data-reveal]");
+      const prefersReducedMotion = reduceMotionQuery.matches;
+
+      if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        revealElements.forEach((element) => {
+          element.classList.add("is-visible");
+        });
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.08,
+            rootMargin: "0px 0px -5% 0px"
+          }
+        );
+
+        revealElements.forEach((element) => {
+          revealObserver.observe(element);
+        });
+      }
+    </script>
+  </body>
+</html>
