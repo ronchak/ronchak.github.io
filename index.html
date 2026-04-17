@@ -8,17 +8,17 @@
       name="description"
       content="Personal site of Ronak Chakraborty, a Bay Area-raised Kelley senior building AI products and thinking about operations, cities, finance systems, and the everyday structures people have to live inside."
     >
-    <link rel="canonical" href="https://ronakchakrabory.me/">
+    <link rel="canonical" href="https://ronakchakraborty.me/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Ronak Chakraborty | Systems beneath everyday life">
     <meta
       property="og:description"
       content="Personal site of Ronak Chakraborty, spanning AI products, operations, finance systems, cities, and the everyday systems people have to live inside."
     >
-    <meta property="og:url" content="https://ronakchakrabory.me/">
+    <meta property="og:url" content="https://ronakchakraborty.me/">
     <meta
       property="og:image"
-      content="https://ronakchakrabory.me/og-image.png"
+      content="https://ronakchakraborty.me/og-image.png"
     >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,13 @@
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
     <script>
       document.documentElement.classList.add("has-js");
+      try {
+        const storedTheme = window.localStorage.getItem("site-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
     </script>
     <style>
       :root {
@@ -45,6 +52,14 @@
         --color-text-faint: #786958;
         --color-panel: rgba(245, 237, 225, 0.36);
         --color-panel-strong: rgba(233, 219, 196, 0.44);
+        --color-header: rgba(232, 219, 198, 0.88);
+        --color-card-bg: rgba(232, 219, 197, 0.18);
+        --color-figure-frame: rgba(225, 212, 191, 0.56);
+        --color-figure-frame-strong: rgba(225, 212, 191, 0.64);
+        --color-icon-bg: rgba(225, 212, 191, 0.48);
+        --color-tool-bg: rgba(239, 230, 214, 0.94);
+        --color-tool-bg-strong: rgba(228, 216, 195, 0.96);
+        --color-tool-panel: #e7dac4;
 
         --section-padding: clamp(8rem, 18vh, 16rem);
         --container-standard: 1280px;
@@ -56,6 +71,25 @@
         --focus-ring: 2px solid var(--color-text);
         --ease-gentle: cubic-bezier(0.2, 0.8, 0.2, 1);
         --ease-press: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      html[data-theme="dark"] {
+        --color-bg: #17130f;
+        --color-surface: #221c16;
+        --color-border: #4f4337;
+        --color-text: #f1e8db;
+        --color-text-muted: #d2c2ae;
+        --color-text-faint: #9e8d79;
+        --color-panel: rgba(39, 32, 25, 0.82);
+        --color-panel-strong: rgba(29, 24, 19, 0.94);
+        --color-header: rgba(20, 17, 13, 0.92);
+        --color-card-bg: rgba(32, 26, 21, 0.54);
+        --color-figure-frame: rgba(45, 37, 29, 0.9);
+        --color-figure-frame-strong: rgba(49, 40, 31, 0.94);
+        --color-icon-bg: rgba(48, 40, 31, 0.86);
+        --color-tool-bg: rgba(28, 23, 18, 0.96);
+        --color-tool-bg-strong: rgba(38, 31, 24, 0.98);
+        --color-tool-panel: #211a14;
       }
 
       html {
@@ -79,6 +113,13 @@
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+      }
+
+      html[data-theme="dark"] body {
+        background:
+          radial-gradient(circle at top right, rgba(120, 96, 72, 0.18), transparent 36%),
+          radial-gradient(circle at 10% 0%, rgba(87, 69, 52, 0.16), transparent 32%),
+          linear-gradient(180deg, #1b1611 0%, var(--color-bg) 42%, #120f0c 100%);
       }
 
       img {
@@ -136,7 +177,7 @@
 
       .site-header {
         border-bottom: 1px solid var(--color-border);
-        background: rgba(232, 219, 198, 0.88);
+        background: var(--color-header);
       }
 
       .site-header__inner {
@@ -145,6 +186,7 @@
         justify-content: space-between;
         gap: 1.5rem;
         min-height: 5rem;
+        padding-right: clamp(11.5rem, 16vw, 13.5rem);
       }
 
       .site-identity,
@@ -232,6 +274,92 @@
         text-transform: uppercase;
       }
 
+      .floating-tools {
+        position: fixed;
+        top: max(1rem, calc(env(safe-area-inset-top) + 0.75rem));
+        right: clamp(1rem, 2vw, 2rem);
+        z-index: 95;
+        display: grid;
+        justify-items: end;
+        gap: 0.75rem;
+      }
+
+      .floating-tools__row {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .floating-tool-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.8rem;
+        padding: 0.8rem 1rem;
+        border: 1px solid var(--color-border);
+        background: var(--color-tool-bg);
+        color: var(--color-text-muted);
+        font-family: var(--font-ui);
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          background 300ms var(--ease-press),
+          color 300ms var(--ease-press),
+          border-color 300ms var(--ease-press);
+      }
+
+      .floating-tool-button:hover,
+      .floating-tool-button:focus-visible,
+      .floating-tool-button[aria-expanded="true"] {
+        background: var(--color-tool-bg-strong);
+        color: var(--color-text);
+      }
+
+      .toc-panel {
+        width: min(21rem, calc(100vw - 2rem));
+        display: grid;
+        gap: 0.5rem;
+        padding: 1rem 1.05rem;
+        border: 1px solid var(--color-border);
+        background: var(--color-tool-panel);
+        opacity: 0;
+        transform: translateY(-0.35rem);
+        pointer-events: none;
+        transition:
+          opacity 300ms var(--ease-gentle),
+          transform 300ms var(--ease-gentle);
+      }
+
+      .floating-tools[data-open="true"] .toc-panel {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .toc-panel__label {
+        color: var(--color-text-faint);
+      }
+
+      .toc-panel__link {
+        display: block;
+        padding: 0.8rem 0;
+        border-top: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+        font-family: var(--font-ui);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .toc-panel__link:hover,
+      .toc-panel__link:focus-visible {
+        color: var(--color-text);
+      }
+
       main > section {
         padding-block: var(--section-padding);
       }
@@ -286,7 +414,7 @@
       .hero__figure-frame {
         padding: 0.9rem;
         border: 1px solid var(--color-border);
-        background: rgba(225, 212, 191, 0.64);
+        background: var(--color-figure-frame-strong);
       }
 
       .hero__figure-media {
@@ -421,7 +549,7 @@
         gap: 1.15rem;
         min-height: clamp(18rem, 23vw, 22rem);
         padding: clamp(2.25rem, 3.5vw, 3rem);
-        background: rgba(232, 219, 197, 0.18);
+        background: var(--color-card-bg);
       }
 
       .study + .study {
@@ -435,7 +563,7 @@
         align-items: center;
         justify-content: center;
         border: 1px solid var(--color-border);
-        background: rgba(225, 212, 191, 0.48);
+        background: var(--color-icon-bg);
         color: var(--color-text-muted);
       }
 
@@ -487,7 +615,7 @@
       .studies__figure-frame {
         padding: 0.9rem;
         border: 1px solid var(--color-border);
-        background: rgba(225, 212, 191, 0.56);
+        background: var(--color-figure-frame);
       }
 
       .studies__figure-media {
@@ -574,7 +702,7 @@
       .philosophy__figure-frame {
         padding: 0.9rem;
         border: 1px solid var(--color-border);
-        background: rgba(225, 212, 191, 0.56);
+        background: var(--color-figure-frame);
       }
 
       .philosophy__figure-media {
@@ -621,7 +749,7 @@
       .history__figure-frame {
         padding: 0.9rem;
         border: 1px solid var(--color-border);
-        background: rgba(225, 212, 191, 0.56);
+        background: var(--color-figure-frame);
       }
 
       .history__figure-media {
@@ -1261,7 +1389,12 @@
       }
 
       @media (max-width: 900px) {
+        .site-header__inner {
+          padding-right: 0;
+        }
+
         .hero__grid,
+        .floating-tools__row,
         .studies__grid,
         .studies__school,
         .studies__aside,
@@ -1286,6 +1419,19 @@
 
         .question__body {
           grid-template-columns: 1fr;
+        }
+
+        .floating-tools {
+          right: 0.9rem;
+        }
+
+        .floating-tools__row {
+          justify-content: flex-end;
+        }
+
+        .floating-tool-button {
+          min-height: 2.6rem;
+          padding: 0.75rem 0.9rem;
         }
 
         .study + .study {
@@ -1353,6 +1499,11 @@
           display: none;
         }
 
+        .floating-tools {
+          top: auto;
+          bottom: 1rem;
+        }
+
         .menu-toggle {
           display: inline-flex;
         }
@@ -1386,10 +1537,39 @@
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="floating-tools" data-open="false">
+      <div class="floating-tools__row">
+        <button class="floating-tool-button" type="button" data-theme-toggle aria-pressed="false">
+          <span data-theme-label>Dark mode</span>
+        </button>
+        <button
+          class="floating-tool-button"
+          type="button"
+          data-toc-toggle
+          aria-expanded="false"
+          aria-controls="floating-toc"
+        >
+          Guide
+        </button>
+      </div>
+      <aside class="toc-panel" id="floating-toc" aria-label="Page guide">
+        <p class="toc-panel__label metadata">Page guide</p>
+        <a class="toc-panel__link" href="#study-focus">What I Studied</a>
+        <a class="toc-panel__link" href="#philosophy">Philosophy</a>
+        <a class="toc-panel__link" href="#background">Where I&rsquo;m From</a>
+        <a class="toc-panel__link" href="#portfolio">Portfolio</a>
+        <a class="toc-panel__link" href="#experience">Experience</a>
+        <a class="toc-panel__link" href="#stack">Technical Stack</a>
+        <a class="toc-panel__link" href="#current-questions">What Holds My Attention</a>
+        <a class="toc-panel__link" href="#how-i-work">How I Work</a>
+        <a class="toc-panel__link" href="#looking-for">What I&rsquo;m Looking For</a>
+        <a class="toc-panel__link" href="#contact">Contact Me</a>
+      </aside>
+    </div>
     <header class="site-header">
       <div class="wide-shell">
         <div class="site-header__inner">
-          <p class="site-identity">ronakchakrabory.me</p>
+          <p class="site-identity">ronakchakraborty.me</p>
           <nav class="site-nav" aria-label="Main navigation">
             <div class="site-nav__links">
               <a class="nav-link" href="#study-focus">Studies</a>
@@ -2243,10 +2423,69 @@
     </footer>
 
     <script>
+      const root = document.documentElement;
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const mobileMenu = document.getElementById("mobile-menu");
       const mobileMenuLinks = document.querySelectorAll(".mobile-menu__link");
+      const floatingTools = document.querySelector(".floating-tools");
+      const tocToggle = document.querySelector("[data-toc-toggle]");
+      const tocPanel = document.getElementById("floating-toc");
+      const tocLinks = document.querySelectorAll(".toc-panel__link");
+      const themeToggle = document.querySelector("[data-theme-toggle]");
+      const themeLabel = document.querySelector("[data-theme-label]");
       const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (themeToggle && themeLabel) {
+        const syncThemeButton = () => {
+          const isDark = root.dataset.theme === "dark";
+          themeToggle.setAttribute("aria-pressed", String(isDark));
+          themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
+        };
+
+        syncThemeButton();
+
+        themeToggle.addEventListener("click", () => {
+          const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+          root.dataset.theme = nextTheme;
+          try {
+            window.localStorage.setItem("site-theme", nextTheme);
+          } catch (error) {
+            // Ignore storage failures and keep the in-memory theme.
+          }
+          syncThemeButton();
+        });
+      }
+
+      if (floatingTools && tocToggle && tocPanel) {
+        const closeGuide = () => {
+          floatingTools.dataset.open = "false";
+          tocToggle.setAttribute("aria-expanded", "false");
+        };
+
+        tocToggle.addEventListener("click", () => {
+          const isOpen = floatingTools.dataset.open === "true";
+          floatingTools.dataset.open = String(!isOpen);
+          tocToggle.setAttribute("aria-expanded", String(!isOpen));
+        });
+
+        tocLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            closeGuide();
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!floatingTools.contains(event.target)) {
+            closeGuide();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeGuide();
+          }
+        });
+      }
 
       if (menuToggle && mobileMenu) {
         const closeMenu = () => {
