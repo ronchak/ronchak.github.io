@@ -2524,6 +2524,7 @@
       const tocLinks = document.querySelectorAll(".toc-panel__link");
       const themeToggle = document.querySelector("[data-theme-toggle]");
       const themeLabel = document.querySelector("[data-theme-label]");
+      const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
       const applyTheme = (nextTheme) => {
         root.dataset.theme = nextTheme;
