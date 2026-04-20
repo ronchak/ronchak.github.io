@@ -118,9 +118,12 @@
       document.documentElement.classList.add("has-js");
       try {
         const storedTheme = window.localStorage.getItem("site-theme");
-        document.documentElement.dataset.theme = storedTheme || "light";
+        const initialTheme = storedTheme === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = initialTheme;
+        document.documentElement.style.colorScheme = initialTheme;
       } catch (error) {
         document.documentElement.dataset.theme = "light";
+        document.documentElement.style.colorScheme = "light";
       }
     </script>
     <style>
@@ -205,6 +208,22 @@
           radial-gradient(circle at top right, rgba(181, 136, 92, 0.16), transparent 34%),
           radial-gradient(circle at 10% 0%, rgba(125, 93, 64, 0.18), transparent 30%),
           linear-gradient(180deg, #2d2119 0%, #241a14 34%, var(--color-bg) 68%, #1b140f 100%);
+      }
+
+      .theme-transition,
+      .theme-transition *,
+      .theme-transition *::before,
+      .theme-transition *::after {
+        transition-property:
+          background,
+          background-color,
+          color,
+          border-color,
+          box-shadow,
+          fill,
+          stroke !important;
+        transition-duration: 320ms !important;
+        transition-timing-function: ease-in-out !important;
       }
 
       img {
@@ -2191,7 +2210,7 @@
                     Next.js • React • TypeScript • Tailwind • FastAPI • Pydantic
                   </p>
                   <p class="stack-card__detail metadata">
-                    OpenRouter • Auth.js • Upstash Redis • Vercel • Render • GitHub
+                    OpenRouter • Auth.js • Upstash Redis • Vercel • Render • GitHub • Codex • VS Code • anti-gravity
                   </p>
                 </div>
               </article>
@@ -2508,6 +2527,31 @@
       const themeToggle = document.querySelector("[data-theme-toggle]");
       const themeLabel = document.querySelector("[data-theme-label]");
       const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const THEME_TRANSITION_CLASS = "theme-transition";
+      let themeTransitionTimeout = 0;
+
+      const applyTheme = (nextTheme) => {
+        root.dataset.theme = nextTheme;
+        root.style.colorScheme = nextTheme;
+      };
+
+      const clearThemeTransition = () => {
+        window.clearTimeout(themeTransitionTimeout);
+        root.classList.remove(THEME_TRANSITION_CLASS);
+      };
+
+      const runThemeTransition = (callback) => {
+        if (reduceMotionQuery.matches) {
+          callback();
+          return;
+        }
+
+        clearThemeTransition();
+        root.classList.add(THEME_TRANSITION_CLASS);
+        void root.offsetWidth;
+        callback();
+        themeTransitionTimeout = window.setTimeout(clearThemeTransition, 340);
+      };
 
       if (themeToggle && themeLabel) {
         const syncThemeButton = () => {
@@ -2520,13 +2564,15 @@
 
         themeToggle.addEventListener("click", () => {
           const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
-          root.dataset.theme = nextTheme;
-          try {
-            window.localStorage.setItem("site-theme", nextTheme);
-          } catch (error) {
-            // Ignore storage failures and keep the in-memory theme.
-          }
-          syncThemeButton();
+          runThemeTransition(() => {
+            applyTheme(nextTheme);
+            try {
+              window.localStorage.setItem("site-theme", nextTheme);
+            } catch (error) {
+              // Ignore storage failures and keep the in-memory theme.
+            }
+            syncThemeButton();
+          });
         });
       }
 
