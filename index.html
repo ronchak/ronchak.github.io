@@ -1036,14 +1036,14 @@
 
       .portfolio__grid {
         display: grid;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1px;
         padding: 1px;
         background: var(--color-border);
       }
 
       .project {
-        grid-column: span 3;
+        grid-column: span 1;
         display: grid;
         gap: 1.6rem;
         align-content: start;
@@ -1055,7 +1055,7 @@
       }
 
       .project--compact {
-        grid-column: span 2;
+        grid-column: span 1;
       }
 
       .project:hover,
@@ -1915,14 +1915,17 @@
               <div class="project__body">
                 <h3><span class="project__title">Sparse Halo</span></h3>
                 <p class="project__description">
-                  Sparse Halo started from a simple dissatisfaction. Most AI tools either hide their reasoning or project confidence they have not earned. I built it into a private product family where Cabinet handles multi-model draft, critique, and synthesis, while adjacent surfaces cover faster chat and SAT workflows.
+                  Sparse Halo started as a multi-agent AI project, but it grew into a small private product family with a direct chat mode, a structured Cabinet mode, and a separate SAT Prep lane. What kept it interesting for me was figuring out where a structured AI workflow was actually useful, when one model was enough, when a task needed debate or grounding, and how to package that into something a real person could use. A lot of the work was really about reducing friction and making the system legible, from temporary-by-default sessions and access gating to source panels, file attachments, and shareable artifacts.
                 </p>
                 <div class="project__details">
                   <p class="project__detail metadata">
                     Next.js • FastAPI • SSE streaming • OpenRouter • role-based orchestration
                   </p>
                   <p class="project__detail metadata">
-                    Cabinet • Chat • SAT Prep • session artifacts • access gating
+                    Cabinet • Chatbot • Compare • SAT Prep • session artifacts • access gating
+                  </p>
+                  <p class="project__detail metadata">
+                    grounding • structured source panels • file attachments • share links • multi-model synthesis
                   </p>
                   <a
                     class="ghost-button ghost-button--primary"
@@ -1944,7 +1947,7 @@
               <div class="project__body">
                 <h3><span class="project__title">Routing and Risk at TJX</span></h3>
                 <p class="project__description">
-                  TJX was a louder, faster, and more physical environment than most of my other work. I built a Python pre-routing tool and paired it with Power BI plus live BlueYonder data to surface outbound damage risk across a high-volume warehouse. It was the clearest proof I&rsquo;ve had that I like work where analysis can change a real decision the same day.
+                  TJX was one of the first places where I got to work on a problem that felt analytical and operational at the same time. I was building a Python pre-routing tool around outbound damage risk in a high-volume warehouse, but the part that stayed with me was the pace. It was a setting where decisions had to be smart, quick, and scalable. I used Power BI and live BlueYonder data to show where risk was building across doors, lanes, and time windows, then turn that into something supervisors and leadership could act on before problems spread.
                 </p>
                 <div class="project__details">
                   <p class="project__detail metadata">
@@ -2021,6 +2024,35 @@
                       Karpathy note
                     </a>
                   </div>
+                </div>
+              </div>
+              </article>
+
+              <article class="project project--compact">
+              <div class="project__meta">
+                <p class="project__category metadata">Vertical SaaS / studio operations</p>
+                <p class="project__status metadata">Early-stage build, spring 2026</p>
+              </div>
+              <div class="project__body">
+                <h3><span class="project__title">Koaryu</span></h3>
+                <p class="project__description">
+                  I am building Koaryu because independent martial arts studios seem stuck between spreadsheets and overpriced legacy software. It is still an early-stage project, and that is exactly why I am excited about it. I am shaping it into a purpose-built operating system for student management, belt progression, scheduling, leads, billing, and retention, and using it to test what better software can feel like inside a very specific niche business. To me, the future applications are what make it compelling: it is a live experiment in whether thoughtful vertical SaaS can improve day-to-day operations where generic tools usually fall short.
+                </p>
+                <div class="project__details">
+                  <p class="project__detail metadata">
+                    Next.js 16 • React 19 • FastAPI • Supabase • multi-tenant auth
+                  </p>
+                  <p class="project__detail metadata">
+                    students • leads • schedule • belt tracker • billing • studio CRM
+                  </p>
+                  <a
+                    class="ghost-button ghost-button--primary ghost-button--small"
+                    href="https://github.com/ronchak/Koaryu/tree/main"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    View project repo
+                  </a>
                 </div>
               </div>
               </article>
