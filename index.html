@@ -422,6 +422,13 @@
         justify-self: end;
       }
 
+      .hero__showcase {
+        display: grid;
+        gap: 1.15rem;
+        justify-self: end;
+        justify-items: end;
+      }
+
       .hero__figure-frame {
         padding: 0.9rem;
         border: 1px solid var(--color-border);
@@ -445,6 +452,126 @@
         color: var(--color-text-muted);
         font-size: 0.97rem;
         line-height: 1.75;
+      }
+
+      .hero__product-actions {
+        justify-self: end;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        width: min(100%, 30rem);
+        border: 1px solid var(--color-text);
+        background: var(--color-text);
+        box-shadow: 0 1.1rem 2.5rem rgba(34, 27, 21, 0.08);
+      }
+
+      .hero__product-link {
+        position: relative;
+        isolation: isolate;
+        min-height: 5.65rem;
+        display: grid;
+        align-content: center;
+        gap: 0.38rem;
+        padding: 1.15rem 1.25rem;
+        overflow: hidden;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 42%),
+          var(--color-bg);
+        color: var(--color-text);
+        font-family: var(--font-ui);
+        text-decoration: none;
+        transition:
+          color 360ms var(--ease-press),
+          background-color 360ms var(--ease-press),
+          border-color 360ms var(--ease-press),
+          box-shadow 360ms var(--ease-press),
+          transform 360ms var(--ease-press);
+      }
+
+      .hero__product-link::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: var(--color-text);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 460ms var(--ease-press);
+      }
+
+      .hero__product-link::after {
+        content: "";
+        position: absolute;
+        inset-block: 0;
+        left: -35%;
+        width: 30%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+        transform: skewX(-18deg) translateX(-120%);
+        transition: transform 620ms var(--ease-gentle);
+      }
+
+      .hero__product-link:nth-child(2)::before {
+        transform-origin: right;
+      }
+
+      .hero__product-link:hover,
+      .hero__product-link:focus-visible {
+        color: var(--color-bg);
+        transform: translateY(-0.18rem);
+        box-shadow: 0 1rem 2rem rgba(34, 27, 21, 0.12);
+      }
+
+      .hero__product-link:hover::before,
+      .hero__product-link:focus-visible::before {
+        transform: scaleX(1);
+      }
+
+      .hero__product-link:hover::after,
+      .hero__product-link:focus-visible::after {
+        transform: skewX(-18deg) translateX(560%);
+      }
+
+      .hero__product-eyebrow {
+        color: var(--color-text-faint);
+        font-size: 0.6rem;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        line-height: 1;
+        opacity: 1;
+        text-transform: uppercase;
+        transition:
+          color 360ms var(--ease-press),
+          opacity 360ms var(--ease-press);
+      }
+
+      .hero__product-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.76rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        line-height: 1.3;
+        text-transform: uppercase;
+      }
+
+      .hero__product-arrow {
+        font-size: 1rem;
+        line-height: 1;
+        transform: translateX(0);
+        transition: transform 360ms var(--ease-press);
+      }
+
+      .hero__product-link:hover .hero__product-eyebrow,
+      .hero__product-link:focus-visible .hero__product-eyebrow {
+        color: var(--color-bg);
+        opacity: 0.72;
+      }
+
+      .hero__product-link:hover .hero__product-arrow,
+      .hero__product-link:focus-visible .hero__product-arrow {
+        transform: translateX(0.28rem);
       }
 
       .metadata {
@@ -1558,6 +1685,19 @@
           width: min(100%, 24rem);
         }
 
+        .hero__showcase {
+          width: min(100%, 24rem);
+          justify-self: center;
+          justify-items: center;
+        }
+
+        .hero__product-actions {
+          justify-self: center;
+          order: -1;
+          width: 100%;
+          margin-block: 0.75rem 0.35rem;
+        }
+
         .philosophy__body,
         .history__body,
         .studies__figure,
@@ -1689,16 +1829,44 @@
               </p>
             </div>
 
-            <figure class="hero__figure">
-              <div class="hero__figure-frame">
-                <div class="hero__figure-media">
-                  <img src="./iu-clock.jpg" alt="Red clock with spring tulips on Indiana University Bloomington campus">
+            <div class="hero__showcase">
+              <figure class="hero__figure">
+                <div class="hero__figure-frame">
+                  <div class="hero__figure-media">
+                    <img src="./iu-clock.jpg" alt="Red clock with spring tulips on Indiana University Bloomington campus">
+                  </div>
                 </div>
+                <figcaption class="hero__figure-caption">
+                  Shoutout Indiana University Bloomington! I have loved my time here and am so so grateful for the people, classes, and opportunities that have shaped the last few years of my life.
+                </figcaption>
+              </figure>
+              <div class="hero__product-actions" aria-label="Live products">
+                <a
+                  class="hero__product-link"
+                  href="https://koaryu.app"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span class="hero__product-eyebrow">Live beta</span>
+                  <span class="hero__product-title">
+                    Koaryu
+                    <span class="hero__product-arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+                <a
+                  class="hero__product-link"
+                  href="https://sparsehalo.xyz"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span class="hero__product-eyebrow">Live product</span>
+                  <span class="hero__product-title">
+                    Sparse Halo
+                    <span class="hero__product-arrow" aria-hidden="true">↗</span>
+                  </span>
+                </a>
               </div>
-              <figcaption class="hero__figure-caption">
-                Shoutout Indiana University Bloomington! I have loved my time here and am so so grateful for the people, classes, and opportunities that have shaped the last few years of my life.
-              </figcaption>
-            </figure>
+            </div>
           </div>
           <a class="scroll-indicator" href="#philosophy">Scroll</a>
         </div>
