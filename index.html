@@ -493,8 +493,7 @@
       }
 
       .hero__product-link:hover,
-      .hero__product-link:focus-visible,
-      .hero__product-link.is-pointer-hovered {
+      .hero__product-link:focus-visible {
         border-color: var(--color-text);
         background: var(--color-text);
         color: var(--color-bg);
@@ -537,15 +536,13 @@
       }
 
       .hero__product-link:hover .hero__product-eyebrow,
-      .hero__product-link:focus-visible .hero__product-eyebrow,
-      .hero__product-link.is-pointer-hovered .hero__product-eyebrow {
+      .hero__product-link:focus-visible .hero__product-eyebrow {
         color: var(--color-bg);
         opacity: 0.72;
       }
 
       .hero__product-link:hover .hero__product-arrow,
-      .hero__product-link:focus-visible .hero__product-arrow,
-      .hero__product-link.is-pointer-hovered .hero__product-arrow {
+      .hero__product-link:focus-visible .hero__product-arrow {
         transform: translateX(0.28rem);
       }
 
@@ -1820,7 +1817,6 @@
                   class="hero__product-link"
                   href="https://koaryu.app"
                   rel="noopener noreferrer"
-                  target="_blank"
                 >
                   <span class="hero__product-eyebrow">Live beta</span>
                   <span class="hero__product-title">
@@ -1833,7 +1829,6 @@
                   href="https://www.sparsehalo.xyz"
                   aria-label="Open Sparse Halo live product"
                   rel="noopener noreferrer"
-                  target="_blank"
                 >
                   <span class="hero__product-eyebrow">Live product</span>
                   <span class="hero__product-title">
@@ -2773,78 +2768,6 @@
             closeGuide();
           }
         });
-      }
-
-      const heroProductLinks = document.querySelectorAll(".hero__product-link");
-
-      if (heroProductLinks.length) {
-        const getProductLinkFromPoint = (event) => {
-          return Array.from(heroProductLinks).find((link) => {
-            const rect = link.getBoundingClientRect();
-
-            return (
-              event.clientX >= rect.left &&
-              event.clientX <= rect.right &&
-              event.clientY >= rect.top &&
-              event.clientY <= rect.bottom
-            );
-          });
-        };
-
-        const clearProductHover = () => {
-          heroProductLinks.forEach((link) => {
-            link.classList.remove("is-pointer-hovered");
-          });
-        };
-
-        const syncProductHover = (event) => {
-          const hoveredLink = getProductLinkFromPoint(event);
-
-          heroProductLinks.forEach((link) => {
-            link.classList.toggle("is-pointer-hovered", link === hoveredLink);
-          });
-        };
-
-        let lastProductActivation = 0;
-
-        const activateProductLink = (event) => {
-          if (event.defaultPrevented || event.button !== 0) {
-            return;
-          }
-
-          if (Date.now() - lastProductActivation < 500) {
-            event.preventDefault();
-            event.stopPropagation();
-            return;
-          }
-
-          const productLink = getProductLinkFromPoint(event);
-
-          if (!productLink) {
-            return;
-          }
-
-          lastProductActivation = Date.now();
-          event.preventDefault();
-          event.stopPropagation();
-
-          if (productLink.target === "_blank") {
-            const openedWindow = window.open(productLink.href, "_blank", "noopener,noreferrer");
-
-            if (!openedWindow || openedWindow.closed || typeof openedWindow.closed === "undefined") {
-              window.location.href = productLink.href;
-            }
-          } else {
-            window.location.href = productLink.href;
-          }
-        };
-
-        document.addEventListener("pointermove", syncProductHover, { passive: true });
-        document.addEventListener("pointerup", activateProductLink, true);
-        document.addEventListener("click", activateProductLink, true);
-        document.addEventListener("pointerleave", clearProductHover);
-        window.addEventListener("blur", clearProductHover);
-        window.addEventListener("scroll", clearProductHover, { passive: true });
       }
 
       const revealElements = document.querySelectorAll("[data-reveal]");
