@@ -454,98 +454,6 @@
         line-height: 1.75;
       }
 
-      .hero__product-actions {
-        position: relative;
-        z-index: 1;
-        justify-self: end;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-auto-rows: minmax(5rem, 1fr);
-        align-items: stretch;
-        gap: 0.75rem;
-        width: min(100%, 30rem);
-      }
-
-      .hero__product-link {
-        position: relative;
-        min-height: 5rem;
-        min-width: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-self: stretch;
-        gap: 0.38rem;
-        padding: 1.05rem 1.15rem;
-        border: 1px solid var(--color-border);
-        overflow: hidden;
-        background: transparent;
-        color: var(--color-text-muted);
-        cursor: pointer;
-        font-family: var(--font-ui);
-        text-decoration: none;
-        transition:
-          color 300ms var(--ease-press),
-          background-color 300ms var(--ease-press),
-          border-color 300ms var(--ease-press),
-          box-shadow 300ms var(--ease-press);
-      }
-
-      .hero__product-link:hover,
-      .hero__product-link:focus-visible {
-        border-color: var(--color-text);
-        background: var(--color-text);
-        color: var(--color-bg);
-        box-shadow: 0 0.95rem 1.8rem rgba(34, 27, 21, 0.12);
-      }
-
-      .hero__product-eyebrow {
-        pointer-events: none;
-        color: var(--color-text-faint);
-        font-size: 0.6rem;
-        font-weight: 500;
-        letter-spacing: 0.22em;
-        line-height: 1;
-        opacity: 1;
-        text-transform: uppercase;
-        transition:
-          color 360ms var(--ease-press),
-          opacity 360ms var(--ease-press);
-      }
-
-      .hero__product-title {
-        pointer-events: none;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        font-size: 0.76rem;
-        font-weight: 500;
-        letter-spacing: 0.2em;
-        line-height: 1.3;
-        text-transform: uppercase;
-      }
-
-      .hero__product-arrow {
-        pointer-events: none;
-        font-size: 1rem;
-        line-height: 1;
-        transform: translateX(0);
-        transition: transform 360ms var(--ease-press);
-      }
-
-      .hero__product-link:hover .hero__product-eyebrow,
-      .hero__product-link:focus-visible .hero__product-eyebrow {
-        color: var(--color-bg);
-        opacity: 0.72;
-      }
-
-      .hero__product-link:hover .hero__product-arrow,
-      .hero__product-link:focus-visible .hero__product-arrow {
-        transform: translateX(0.28rem);
-      }
-
       .metadata {
         margin: 0;
         color: var(--color-text-faint);
@@ -1267,6 +1175,74 @@
         letter-spacing: 0.17em;
       }
 
+      .hero__product-actions {
+        position: relative;
+        z-index: 1;
+        justify-self: end;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: min(100%, 30rem);
+        border: 1px solid var(--color-text);
+      }
+
+      .hero__product-button.ghost-button {
+        display: grid;
+        align-content: center;
+        align-items: stretch;
+        justify-content: stretch;
+        justify-items: start;
+        gap: 0.38rem;
+        min-width: 0;
+        min-height: 5rem;
+        padding: 1.05rem 1.35rem;
+        border: 0;
+        border-left: 1px solid var(--color-text);
+        text-align: left;
+      }
+
+      .hero__product-button:first-child {
+        border-left: 0;
+      }
+
+      .hero__product-eyebrow {
+        color: var(--color-text-faint);
+        font-size: 0.6rem;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        line-height: 1;
+      }
+
+      .hero__product-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.85rem;
+        width: 100%;
+        font-size: 0.76rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        line-height: 1.3;
+      }
+
+      .hero__product-arrow {
+        flex: 0 0 auto;
+        font-size: 1rem;
+        line-height: 1;
+        transform: translateX(0);
+        transition: transform 360ms var(--ease-press);
+      }
+
+      .hero__product-button:hover .hero__product-eyebrow,
+      .hero__product-button:focus-visible .hero__product-eyebrow {
+        color: var(--color-bg);
+        opacity: 0.72;
+      }
+
+      .hero__product-button:hover .hero__product-arrow,
+      .hero__product-button:focus-visible .hero__product-arrow {
+        transform: translateX(0.28rem);
+      }
+
       .work__intro {
         width: min(100%, 100%);
         margin: 0;
@@ -1665,9 +1641,7 @@
 
         .hero__product-actions {
           justify-self: center;
-          order: -1;
           width: 100%;
-          margin-block: 0.75rem 0.35rem;
         }
 
         .philosophy__body,
@@ -1725,6 +1699,23 @@
 
         .footer__inner {
           flex-direction: column;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero__product-actions {
+          grid-template-columns: 1fr;
+        }
+
+        .hero__product-button.ghost-button {
+          min-height: 4.6rem;
+          border-left: 0;
+          border-top: 1px solid var(--color-text);
+          padding-inline: 1.05rem;
+        }
+
+        .hero__product-button:first-child {
+          border-top: 0;
         }
       }
 
@@ -1814,26 +1805,29 @@
               </figure>
               <div class="hero__product-actions" aria-label="Live products">
                 <a
-                  class="hero__product-link"
+                  class="ghost-button hero__product-button"
                   href="https://koaryu.app"
                   rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Open Koaryu live beta"
                 >
                   <span class="hero__product-eyebrow">Live beta</span>
                   <span class="hero__product-title">
                     Koaryu
-                    <span class="hero__product-arrow" aria-hidden="true">↗</span>
+                    <span class="hero__product-arrow" aria-hidden="true">&#8599;</span>
                   </span>
                 </a>
                 <a
-                  class="hero__product-link"
+                  class="ghost-button hero__product-button"
                   href="https://www.sparsehalo.xyz"
-                  aria-label="Open Sparse Halo live product"
                   rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Open Sparse Halo live product"
                 >
                   <span class="hero__product-eyebrow">Live product</span>
                   <span class="hero__product-title">
                     Sparse Halo
-                    <span class="hero__product-arrow" aria-hidden="true">↗</span>
+                    <span class="hero__product-arrow" aria-hidden="true">&#8599;</span>
                   </span>
                 </a>
               </div>
