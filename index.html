@@ -455,6 +455,8 @@
       }
 
       .hero__product-actions {
+        position: relative;
+        z-index: 1;
         justify-self: end;
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -480,6 +482,7 @@
         overflow: hidden;
         background: transparent;
         color: var(--color-text-muted);
+        cursor: pointer;
         font-family: var(--font-ui);
         text-decoration: none;
         transition:
@@ -1824,7 +1827,8 @@
                 </a>
                 <a
                   class="hero__product-link"
-                  href="https://sparsehalo.xyz"
+                  href="https://www.sparsehalo.xyz"
+                  aria-label="Open Sparse Halo live product"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
